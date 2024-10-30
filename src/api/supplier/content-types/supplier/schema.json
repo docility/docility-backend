@@ -1,0 +1,201 @@
+{
+  "kind": "collectionType",
+  "collectionName": "suppliers",
+  "info": {
+    "singularName": "supplier",
+    "pluralName": "suppliers",
+    "displayName": "supplier"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "supplier_id": {
+      "type": "string"
+    },
+    "supplier_name": {
+      "type": "string"
+    },
+    "trading_as": {
+      "type": "string"
+    },
+    "abn_no": {
+      "type": "string"
+    },
+    "acn_no": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "bsb": {
+      "type": "string"
+    },
+    "bank_acc_no": {
+      "type": "string"
+    },
+    "bank_acc_name": {
+      "type": "string"
+    },
+    "glocal": {
+      "type": "string"
+    },
+    "supplier_type": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "suburb": {
+      "type": "string"
+    },
+    "postal_code": {
+      "type": "string"
+    },
+    "contact_person_name": {
+      "type": "string"
+    },
+    "contact_person_number": {
+      "type": "string"
+    },
+    "contact_person_email": {
+      "type": "string"
+    },
+    "support_person_name": {
+      "type": "string"
+    },
+    "support_person_number": {
+      "type": "string"
+    },
+    "support_person_email": {
+      "type": "string"
+    },
+    "payment_terms": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "supplier_category": {
+      "type": "string"
+    },
+    "terms_for_use": {
+      "type": "string"
+    },
+    "ongoing_management": {
+      "type": "string"
+    },
+    "exit_terms": {
+      "type": "string"
+    },
+    "supplier_purpose": {
+      "type": "string"
+    },
+    "service_provider": {
+      "type": "string"
+    },
+    "data_shared": {
+      "type": "string"
+    },
+    "department_managing": {
+      "type": "string"
+    },
+    "owner": {
+      "type": "string"
+    },
+    "is_sla": {
+      "type": "string"
+    },
+    "sla_details": {
+      "type": "string"
+    },
+    "credit_limit": {
+      "type": "string"
+    },
+    "iso_27001": {
+      "type": "string"
+    },
+    "iso_9001": {
+      "type": "string"
+    },
+    "iso_14001": {
+      "type": "string"
+    },
+    "iso_45001": {
+      "type": "string"
+    },
+    "modern_slavery_act": {
+      "type": "string"
+    },
+    "modern_slavery_statement_date": {
+      "type": "string"
+    },
+    "certification": {
+      "type": "string"
+    },
+    "other_Certification_exists": {
+      "type": "string"
+    },
+    "annual_budget": {
+      "type": "string"
+    },
+    "contract_commencement_date": {
+      "type": "string"
+    },
+    "contract_end_date": {
+      "type": "string"
+    },
+    "cia_impact": {
+      "type": "string"
+    },
+    "threat": {
+      "type": "string"
+    },
+    "matrix": {
+      "type": "string"
+    },
+    "likelihood": {
+      "type": "string"
+    },
+    "impact": {
+      "type": "string"
+    },
+    "inherent_risk_level": {
+      "type": "string"
+    },
+    "risk_assessment_completed": {
+      "type": "string"
+    },
+    "risk_assessment_required": {
+      "type": "string"
+    },
+    "assessment_due_date": {
+      "type": "string"
+    },
+    "assessment_status": {
+      "type": "string"
+    },
+    "assessment_reviewer_person": {
+      "type": "string"
+    },
+    "supplier_agreement": {
+      "type": "string"
+    },
+    "approval_status": {
+      "type": "string"
+    },
+    "date_entered": {
+      "type": "string"
+    },
+    "decision_date": {
+      "type": "string"
+    }
+  }
+}
