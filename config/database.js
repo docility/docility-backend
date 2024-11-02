@@ -1,7 +1,7 @@
 const path = require('path');
 
 module.exports = ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'sqlite');
+  const client = env('DATABASE_CLIENT', 'mysql');
 
   const connections = {
     mysql: {
@@ -81,7 +81,7 @@ module.exports = ({ env }) => {
       useNullAsDefault: true,
     },
   };
-
+  console.log(client)
   return {
     connection: {
       client,
