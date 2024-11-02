@@ -16,7 +16,7 @@ COPY . .
 # Build the Strapi application
 RUN npm run build
 
-# Set environment variables (if needed)
+# Set environment variables (if needed)  
 # ENV NODE_ENV production
 
 # Expose the port that Strapi runs on
