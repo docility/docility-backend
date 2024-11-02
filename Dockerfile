@@ -20,7 +20,7 @@ RUN npm run build
 # ENV NODE_ENV production
      
 # Expose the port that Strapi runs on
-EXPOSE 1337
+EXPOSE 1337    
 
 # Command to run the Strapi application
 CMD ["npm", "start"]
