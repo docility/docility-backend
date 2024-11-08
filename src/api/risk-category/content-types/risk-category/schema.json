@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "risk_categories",
+  "info": {
+    "singularName": "risk-category",
+    "pluralName": "risk-categories",
+    "displayName": "risk_category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category_domain": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}
