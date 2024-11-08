@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "information_asset_categories",
+  "info": {
+    "singularName": "information-asset-category",
+    "pluralName": "information-asset-categories",
+    "displayName": "information_asset_category"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "category": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

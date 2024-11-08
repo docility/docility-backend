@@ -362,128 +362,6 @@ export interface AdminTransferTokenPermission extends Schema.CollectionType {
   };
 }
 
-export interface ApiRiskCategoryRiskCategory extends Schema.CollectionType {
-  collectionName: 'risk_categories';
-  info: {
-    singularName: 'risk-category';
-    pluralName: 'risk-categories';
-    displayName: 'risk_category';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    category_domain: Attribute.String;
-    description: Attribute.Text;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::risk-category.risk-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::risk-category.risk-category',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
-export interface ApiSupplierSupplier extends Schema.CollectionType {
-  collectionName: 'suppliers';
-  info: {
-    singularName: 'supplier';
-    pluralName: 'suppliers';
-    displayName: 'supplier';
-  };
-  options: {
-    draftAndPublish: true;
-  };
-  attributes: {
-    supplier_id: Attribute.String;
-    supplier_name: Attribute.String;
-    trading_as: Attribute.String;
-    abn_no: Attribute.String;
-    acn_no: Attribute.String;
-    website: Attribute.String;
-    bsb: Attribute.String;
-    bank_acc_no: Attribute.String;
-    bank_acc_name: Attribute.String;
-    glocal: Attribute.String;
-    supplier_type: Attribute.String;
-    address: Attribute.String;
-    country: Attribute.String;
-    state: Attribute.String;
-    suburb: Attribute.String;
-    postal_code: Attribute.String;
-    contact_person_name: Attribute.String;
-    contact_person_number: Attribute.String;
-    contact_person_email: Attribute.String;
-    support_person_name: Attribute.String;
-    support_person_number: Attribute.String;
-    support_person_email: Attribute.String;
-    payment_terms: Attribute.String;
-    notes: Attribute.String;
-    supplier_category: Attribute.String;
-    terms_for_use: Attribute.String;
-    ongoing_management: Attribute.String;
-    exit_terms: Attribute.String;
-    supplier_purpose: Attribute.String;
-    service_provider: Attribute.String;
-    data_shared: Attribute.String;
-    department_managing: Attribute.String;
-    owner: Attribute.String;
-    is_sla: Attribute.String;
-    sla_details: Attribute.String;
-    credit_limit: Attribute.String;
-    iso_27001: Attribute.String;
-    iso_9001: Attribute.String;
-    iso_14001: Attribute.String;
-    iso_45001: Attribute.String;
-    modern_slavery_act: Attribute.String;
-    modern_slavery_statement_date: Attribute.String;
-    certification: Attribute.String;
-    other_Certification_exists: Attribute.String;
-    annual_budget: Attribute.String;
-    contract_commencement_date: Attribute.String;
-    contract_end_date: Attribute.String;
-    cia_impact: Attribute.String;
-    threat: Attribute.String;
-    matrix: Attribute.String;
-    likelihood: Attribute.String;
-    impact: Attribute.String;
-    inherent_risk_level: Attribute.String;
-    risk_assessment_completed: Attribute.String;
-    risk_assessment_required: Attribute.String;
-    assessment_due_date: Attribute.String;
-    assessment_status: Attribute.String;
-    assessment_reviewer_person: Attribute.String;
-    supplier_agreement: Attribute.String;
-    approval_status: Attribute.String;
-    date_entered: Attribute.String;
-    decision_date: Attribute.String;
-    createdAt: Attribute.DateTime;
-    updatedAt: Attribute.DateTime;
-    publishedAt: Attribute.DateTime;
-    createdBy: Attribute.Relation<
-      'api::supplier.supplier',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-    updatedBy: Attribute.Relation<
-      'api::supplier.supplier',
-      'oneToOne',
-      'admin::user'
-    > &
-      Attribute.Private;
-  };
-}
-
 export interface PluginUploadFile extends Schema.CollectionType {
   collectionName: 'files';
   info: {
@@ -910,6 +788,160 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiInformationAssetCategoryInformationAssetCategory
+  extends Schema.CollectionType {
+  collectionName: 'information_asset_categories';
+  info: {
+    singularName: 'information-asset-category';
+    pluralName: 'information-asset-categories';
+    displayName: 'information_asset_category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::information-asset-category.information-asset-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::information-asset-category.information-asset-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRiskCategoryRiskCategory extends Schema.CollectionType {
+  collectionName: 'risk_categories';
+  info: {
+    singularName: 'risk-category';
+    pluralName: 'risk-categories';
+    displayName: 'risk_category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category_domain: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::risk-category.risk-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::risk-category.risk-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiSupplierSupplier extends Schema.CollectionType {
+  collectionName: 'suppliers';
+  info: {
+    singularName: 'supplier';
+    pluralName: 'suppliers';
+    displayName: 'supplier';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    supplier_id: Attribute.String;
+    supplier_name: Attribute.String;
+    trading_as: Attribute.String;
+    abn_no: Attribute.String;
+    acn_no: Attribute.String;
+    website: Attribute.String;
+    bsb: Attribute.String;
+    bank_acc_no: Attribute.String;
+    bank_acc_name: Attribute.String;
+    glocal: Attribute.String;
+    supplier_type: Attribute.String;
+    address: Attribute.String;
+    country: Attribute.String;
+    state: Attribute.String;
+    suburb: Attribute.String;
+    postal_code: Attribute.String;
+    contact_person_name: Attribute.String;
+    contact_person_number: Attribute.String;
+    contact_person_email: Attribute.String;
+    support_person_name: Attribute.String;
+    support_person_number: Attribute.String;
+    support_person_email: Attribute.String;
+    payment_terms: Attribute.String;
+    notes: Attribute.String;
+    supplier_category: Attribute.String;
+    terms_for_use: Attribute.String;
+    ongoing_management: Attribute.String;
+    exit_terms: Attribute.String;
+    supplier_purpose: Attribute.String;
+    service_provider: Attribute.String;
+    data_shared: Attribute.String;
+    department_managing: Attribute.String;
+    owner: Attribute.String;
+    is_sla: Attribute.String;
+    sla_details: Attribute.String;
+    credit_limit: Attribute.String;
+    iso_27001: Attribute.String;
+    iso_9001: Attribute.String;
+    iso_14001: Attribute.String;
+    iso_45001: Attribute.String;
+    modern_slavery_act: Attribute.String;
+    modern_slavery_statement_date: Attribute.String;
+    certification: Attribute.String;
+    other_Certification_exists: Attribute.String;
+    annual_budget: Attribute.String;
+    contract_commencement_date: Attribute.String;
+    contract_end_date: Attribute.String;
+    cia_impact: Attribute.String;
+    threat: Attribute.String;
+    matrix: Attribute.String;
+    likelihood: Attribute.String;
+    impact: Attribute.String;
+    inherent_risk_level: Attribute.String;
+    risk_assessment_completed: Attribute.String;
+    risk_assessment_required: Attribute.String;
+    assessment_due_date: Attribute.String;
+    assessment_status: Attribute.String;
+    assessment_reviewer_person: Attribute.String;
+    supplier_agreement: Attribute.String;
+    approval_status: Attribute.String;
+    date_entered: Attribute.String;
+    decision_date: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::supplier.supplier',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::supplier.supplier',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 declare module '@strapi/types' {
   export module Shared {
     export interface ContentTypes {
@@ -920,8 +952,6 @@ declare module '@strapi/types' {
       'admin::api-token-permission': AdminApiTokenPermission;
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
-      'api::risk-category.risk-category': ApiRiskCategoryRiskCategory;
-      'api::supplier.supplier': ApiSupplierSupplier;
       'plugin::upload.file': PluginUploadFile;
       'plugin::upload.folder': PluginUploadFolder;
       'plugin::content-releases.release': PluginContentReleasesRelease;
@@ -930,6 +960,9 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
+      'api::risk-category.risk-category': ApiRiskCategoryRiskCategory;
+      'api::supplier.supplier': ApiSupplierSupplier;
     }
   }
 }
