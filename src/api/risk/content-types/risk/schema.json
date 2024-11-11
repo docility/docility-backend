@@ -1,0 +1,109 @@
+{
+  "kind": "collectionType",
+  "collectionName": "risks",
+  "info": {
+    "singularName": "risk",
+    "pluralName": "risks",
+    "displayName": "risk",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "dateCreated": {
+      "type": "string"
+    },
+    "riskOwner": {
+      "type": "string"
+    },
+    "riskCategory": {
+      "type": "string"
+    },
+    "threat": {
+      "type": "string"
+    },
+    "vulnerability": {
+      "type": "string"
+    },
+    "informationAsset": {
+      "type": "string"
+    },
+    "ciaImpact": {
+      "type": "string"
+    },
+    "matrix": {
+      "type": "string"
+    },
+    "likelihood": {
+      "type": "string"
+    },
+    "initialImpact": {
+      "type": "string"
+    },
+    "risidualImpact": {
+      "type": "string"
+    },
+    "residualLikelihood": {
+      "type": "string"
+    },
+    "riskLevel": {
+      "type": "string"
+    },
+    "residualRiskLevel": {
+      "type": "string"
+    },
+    "riskAcceptable": {
+      "type": "string"
+    },
+    "riskApprovalDate": {
+      "type": "string"
+    },
+    "riskApprovalEvidence": {
+      "type": "string"
+    },
+    "riskAssessmentCompleted": {
+      "type": "string"
+    },
+    "riskTreatment": {
+      "type": "string"
+    },
+    "controlDomain": {
+      "type": "string"
+    },
+    "personResponsibleToImplement": {
+      "type": "string"
+    },
+    "treatmentApprovalDate": {
+      "type": "string"
+    },
+    "treatmentCompletionDate": {
+      "type": "string"
+    },
+    "residualTreatmentApprovalDate": {
+      "type": "string"
+    },
+    "approvalEvidence": {
+      "type": "string"
+    },
+    "nextReviewDate": {
+      "type": "string"
+    },
+    "riskTreatmentPlan": {
+      "type": "string"
+    },
+    "treatmentApprovalEvidence": {
+      "type": "string"
+    },
+    "controlMapped": {
+      "type": "string"
+    },
+    "notes": {
+      "type": "string"
+    },
+    "treatmentStatus": {
+      "type": "string"
+    }
+  }
+}

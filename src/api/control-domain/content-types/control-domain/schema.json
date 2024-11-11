@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "control_domains",
+  "info": {
+    "singularName": "control-domain",
+    "pluralName": "control-domains",
+    "displayName": "control_domain"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "domain": {
+      "type": "string"
+    },
+    "control_no": {
+      "type": "string"
+    },
+    "control_description": {
+      "type": "string"
+    }
+  }
+}

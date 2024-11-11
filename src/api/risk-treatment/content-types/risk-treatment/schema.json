@@ -1,0 +1,21 @@
+{
+  "kind": "collectionType",
+  "collectionName": "risk_treatments",
+  "info": {
+    "singularName": "risk-treatment",
+    "pluralName": "risk-treatments",
+    "displayName": "risk_treatment"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "treatmentOption": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    }
+  }
+}

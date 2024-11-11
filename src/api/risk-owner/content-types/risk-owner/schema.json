@@ -1,0 +1,31 @@
+{
+  "kind": "collectionType",
+  "collectionName": "risk_owners",
+  "info": {
+    "singularName": "risk-owner",
+    "pluralName": "risk-owners",
+    "displayName": "risk_owner",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "user_id": {
+      "type": "string"
+    },
+    "company": {
+      "type": "string"
+    },
+    "position": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    }
+  }
+}

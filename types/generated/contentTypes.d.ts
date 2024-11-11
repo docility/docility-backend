@@ -788,6 +788,38 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiControlDomainControlDomain extends Schema.CollectionType {
+  collectionName: 'control_domains';
+  info: {
+    singularName: 'control-domain';
+    pluralName: 'control-domains';
+    displayName: 'control_domain';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    domain: Attribute.String;
+    control_no: Attribute.String;
+    control_description: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::control-domain.control-domain',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::control-domain.control-domain',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiInformationAssetCategoryInformationAssetCategory
   extends Schema.CollectionType {
   collectionName: 'information_asset_categories';
@@ -820,6 +852,59 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
   };
 }
 
+export interface ApiRiskRisk extends Schema.CollectionType {
+  collectionName: 'risks';
+  info: {
+    singularName: 'risk';
+    pluralName: 'risks';
+    displayName: 'risk';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    dateCreated: Attribute.String;
+    riskOwner: Attribute.String;
+    riskCategory: Attribute.String;
+    threat: Attribute.String;
+    vulnerability: Attribute.String;
+    informationAsset: Attribute.String;
+    ciaImpact: Attribute.String;
+    matrix: Attribute.String;
+    likelihood: Attribute.String;
+    initialImpact: Attribute.String;
+    risidualImpact: Attribute.String;
+    residualLikelihood: Attribute.String;
+    riskLevel: Attribute.String;
+    residualRiskLevel: Attribute.String;
+    riskAcceptable: Attribute.String;
+    riskApprovalDate: Attribute.String;
+    riskApprovalEvidence: Attribute.String;
+    riskAssessmentCompleted: Attribute.String;
+    riskTreatment: Attribute.String;
+    controlDomain: Attribute.String;
+    personResponsibleToImplement: Attribute.String;
+    treatmentApprovalDate: Attribute.String;
+    treatmentCompletionDate: Attribute.String;
+    residualTreatmentApprovalDate: Attribute.String;
+    approvalEvidence: Attribute.String;
+    nextReviewDate: Attribute.String;
+    riskTreatmentPlan: Attribute.String;
+    treatmentApprovalEvidence: Attribute.String;
+    controlMapped: Attribute.String;
+    notes: Attribute.String;
+    treatmentStatus: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<'api::risk.risk', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<'api::risk.risk', 'oneToOne', 'admin::user'> &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRiskCategoryRiskCategory extends Schema.CollectionType {
   collectionName: 'risk_categories';
   info: {
@@ -844,6 +929,72 @@ export interface ApiRiskCategoryRiskCategory extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::risk-category.risk-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRiskOwnerRiskOwner extends Schema.CollectionType {
+  collectionName: 'risk_owners';
+  info: {
+    singularName: 'risk-owner';
+    pluralName: 'risk-owners';
+    displayName: 'risk_owner';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    user_id: Attribute.String;
+    company: Attribute.String;
+    position: Attribute.String;
+    department: Attribute.String;
+    name: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::risk-owner.risk-owner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::risk-owner.risk-owner',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiRiskTreatmentRiskTreatment extends Schema.CollectionType {
+  collectionName: 'risk_treatments';
+  info: {
+    singularName: 'risk-treatment';
+    pluralName: 'risk-treatments';
+    displayName: 'risk_treatment';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    treatmentOption: Attribute.String;
+    description: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::risk-treatment.risk-treatment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::risk-treatment.risk-treatment',
       'oneToOne',
       'admin::user'
     > &
@@ -960,8 +1111,12 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::control-domain.control-domain': ApiControlDomainControlDomain;
       'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
+      'api::risk.risk': ApiRiskRisk;
       'api::risk-category.risk-category': ApiRiskCategoryRiskCategory;
+      'api::risk-owner.risk-owner': ApiRiskOwnerRiskOwner;
+      'api::risk-treatment.risk-treatment': ApiRiskTreatmentRiskTreatment;
       'api::supplier.supplier': ApiSupplierSupplier;
     }
   }
