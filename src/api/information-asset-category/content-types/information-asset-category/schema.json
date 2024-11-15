@@ -4,7 +4,8 @@
   "info": {
     "singularName": "information-asset-category",
     "pluralName": "information-asset-categories",
-    "displayName": "information_asset_category"
+    "displayName": "information_asset_category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,9 @@
     },
     "description": {
       "type": "text"
+    },
+    "categoryType": {
+      "type": "string"
     }
   }
 }

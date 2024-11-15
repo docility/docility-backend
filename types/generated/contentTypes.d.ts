@@ -864,6 +864,7 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
     singularName: 'information-asset-category';
     pluralName: 'information-asset-categories';
     displayName: 'information_asset_category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -871,6 +872,7 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
   attributes: {
     category: Attribute.String;
     description: Attribute.Text;
+    categoryType: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

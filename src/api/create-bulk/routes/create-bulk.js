@@ -11,5 +11,15 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: 'POST',
+      path: '/create-bulk/asset-categories',
+      handler: 'create-bulk.assetCategories',
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
