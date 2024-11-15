@@ -20,6 +20,12 @@
     },
     "categoryType": {
       "type": "string"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::company.company",
+      "mappedBy": "information_asset_category"
     }
   }
 }

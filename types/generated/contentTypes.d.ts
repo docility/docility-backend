@@ -807,6 +807,11 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
       'manyToOne',
       'api::risk-treatment.risk-treatment'
     >;
+    information_asset_category: Attribute.Relation<
+      'api::company.company',
+      'manyToOne',
+      'api::information-asset-category.information-asset-category'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -873,6 +878,11 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
     category: Attribute.String;
     description: Attribute.Text;
     categoryType: Attribute.String;
+    companies: Attribute.Relation<
+      'api::information-asset-category.information-asset-category',
+      'oneToMany',
+      'api::company.company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;

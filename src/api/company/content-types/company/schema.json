@@ -23,6 +23,12 @@
       "relation": "manyToOne",
       "target": "api::risk-treatment.risk-treatment",
       "inversedBy": "companies"
+    },
+    "information_asset_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::information-asset-category.information-asset-category",
+      "inversedBy": "companies"
     }
   }
 }
