@@ -4,7 +4,8 @@
   "info": {
     "singularName": "risk-treatment",
     "pluralName": "risk-treatments",
-    "displayName": "risk_treatment"
+    "displayName": "risk_treatment",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,15 @@
     },
     "description": {
       "type": "text"
+    },
+    "whenToUse": {
+      "type": "string"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::company.company",
+      "mappedBy": "risk_treatment"
     }
   }
 }

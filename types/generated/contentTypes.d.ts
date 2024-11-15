@@ -788,6 +788,43 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
   };
 }
 
+export interface ApiCompanyCompany extends Schema.CollectionType {
+  collectionName: 'companies';
+  info: {
+    singularName: 'company';
+    pluralName: 'companies';
+    displayName: 'company';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    address: Attribute.String;
+    risk_treatment: Attribute.Relation<
+      'api::company.company',
+      'manyToOne',
+      'api::risk-treatment.risk-treatment'
+    >;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiControlDomainControlDomain extends Schema.CollectionType {
   collectionName: 'control_domains';
   info: {
@@ -919,8 +956,7 @@ export interface ApiRiskCategoryRiskCategory extends Schema.CollectionType {
   attributes: {
     category_domain: Attribute.String;
     description: Attribute.Text;
-    controlHeading: Attribute.String;
-    annexControl: Attribute.String;
+    categoryType: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -980,6 +1016,7 @@ export interface ApiRiskTreatmentRiskTreatment extends Schema.CollectionType {
     singularName: 'risk-treatment';
     pluralName: 'risk-treatments';
     displayName: 'risk_treatment';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -987,6 +1024,12 @@ export interface ApiRiskTreatmentRiskTreatment extends Schema.CollectionType {
   attributes: {
     treatmentOption: Attribute.String;
     description: Attribute.Text;
+    whenToUse: Attribute.String;
+    companies: Attribute.Relation<
+      'api::risk-treatment.risk-treatment',
+      'oneToMany',
+      'api::company.company'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1114,6 +1157,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.permission': PluginUsersPermissionsPermission;
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
+      'api::company.company': ApiCompanyCompany;
       'api::control-domain.control-domain': ApiControlDomainControlDomain;
       'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
       'api::risk.risk': ApiRiskRisk;
