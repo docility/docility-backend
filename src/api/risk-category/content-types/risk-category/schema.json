@@ -4,7 +4,8 @@
   "info": {
     "singularName": "risk-category",
     "pluralName": "risk-categories",
-    "displayName": "risk_category"
+    "displayName": "risk_category",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -16,6 +17,12 @@
     },
     "description": {
       "type": "text"
+    },
+    "controlHeading": {
+      "type": "string"
+    },
+    "annexControl": {
+      "type": "string"
     }
   }
 }

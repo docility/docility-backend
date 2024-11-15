@@ -911,6 +911,7 @@ export interface ApiRiskCategoryRiskCategory extends Schema.CollectionType {
     singularName: 'risk-category';
     pluralName: 'risk-categories';
     displayName: 'risk_category';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -918,6 +919,8 @@ export interface ApiRiskCategoryRiskCategory extends Schema.CollectionType {
   attributes: {
     category_domain: Attribute.String;
     description: Attribute.Text;
+    controlHeading: Attribute.String;
+    annexControl: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
