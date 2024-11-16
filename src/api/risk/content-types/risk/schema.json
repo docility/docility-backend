@@ -104,6 +104,15 @@
     },
     "treatmentStatus": {
       "type": "string"
+    },
+    "riskControlMap": {
+      "type": "string"
+    },
+    "currentControlEffective": {
+      "type": "string"
+    },
+    "currentControlInPlace": {
+      "type": "string"
     }
   }
 }

@@ -830,6 +830,41 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
   };
 }
 
+export interface ApiControlAssessmentControlAssessment
+  extends Schema.CollectionType {
+  collectionName: 'control_assessments';
+  info: {
+    singularName: 'control-assessment';
+    pluralName: 'control-assessments';
+    displayName: 'control_assessment';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    domain: Attribute.String;
+    annexControl: Attribute.String;
+    controlHeading: Attribute.String;
+    controlDescription: Attribute.Text;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::control-assessment.control-assessment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::control-assessment.control-assessment',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiControlDomainControlDomain extends Schema.CollectionType {
   collectionName: 'control_domains';
   info: {
@@ -944,6 +979,9 @@ export interface ApiRiskRisk extends Schema.CollectionType {
     controlMapped: Attribute.String;
     notes: Attribute.String;
     treatmentStatus: Attribute.String;
+    riskControlMap: Attribute.String;
+    currentControlEffective: Attribute.String;
+    currentControlInPlace: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1170,6 +1208,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::company.company': ApiCompanyCompany;
+      'api::control-assessment.control-assessment': ApiControlAssessmentControlAssessment;
       'api::control-domain.control-domain': ApiControlDomainControlDomain;
       'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
       'api::risk.risk': ApiRiskRisk;

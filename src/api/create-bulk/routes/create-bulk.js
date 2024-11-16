@@ -21,5 +21,15 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: 'POST',
+      path: '/create-bulk/assessment-controls',
+      handler: 'create-bulk.assessmentControl',
+      config: {
+        auth: false,
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 };
