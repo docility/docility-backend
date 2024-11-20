@@ -5,8 +5,7 @@ module.exports = {
       method: 'POST',
       path: '/create-bulk/risk-categories',
       handler: 'create-bulk.riskCategories',
-      config: {
-        auth: false,
+      config: { 
         policies: [],
         middlewares: [],
       },
@@ -15,8 +14,7 @@ module.exports = {
       method: 'POST',
       path: '/create-bulk/asset-categories',
       handler: 'create-bulk.assetCategories',
-      config: {
-        auth: false,
+      config: { 
         policies: [],
         middlewares: [],
       },
@@ -25,8 +23,16 @@ module.exports = {
       method: 'POST',
       path: '/create-bulk/assessment-controls',
       handler: 'create-bulk.assessmentControl',
-      config: {
-        auth: false,
+      config: { 
+        policies: [],
+        middlewares: [],
+      },
+    },
+    {
+      method: 'POST',
+      path: '/create-bulk/risk-treatment',
+      handler: 'create-bulk.riskTreatment',
+      config: { 
         policies: [],
         middlewares: [],
       },
