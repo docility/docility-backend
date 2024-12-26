@@ -36,6 +36,22 @@ module.exports = {
         policies: [],
         middlewares: [],
       },
+    }, {
+      method: 'POST',
+      path: '/create-bulk/risks',
+      handler: 'create-bulk.createRisk',
+      config: { 
+        policies: [],
+        middlewares: [],
+      },
+    }, {
+      method: 'POST',
+      path: '/create-bulk/supplier',
+      handler: 'create-bulk.createSupplier',
+      config: { 
+        policies: [],
+        middlewares: [],
+      },
     },
   ],
 };

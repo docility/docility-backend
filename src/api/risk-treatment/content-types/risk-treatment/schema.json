@@ -26,6 +26,16 @@
       "relation": "oneToMany",
       "target": "api::company.company",
       "mappedBy": "risk_treatment"
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
     }
   }
 }

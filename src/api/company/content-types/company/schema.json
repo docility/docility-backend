@@ -29,6 +29,12 @@
       "relation": "manyToOne",
       "target": "api::information-asset-category.information-asset-category",
       "inversedBy": "companies"
+    },
+    "fileupload": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::fileupload.fileupload",
+      "mappedBy": "company"
     }
   }
 }

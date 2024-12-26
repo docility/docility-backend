@@ -771,6 +771,11 @@ export interface PluginUsersPermissionsUser extends Schema.CollectionType {
       'manyToOne',
       'plugin::users-permissions.role'
     >;
+    fileupload: Attribute.Relation<
+      'plugin::users-permissions.user',
+      'manyToOne',
+      'api::fileupload.fileupload'
+    >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     createdBy: Attribute.Relation<
@@ -811,6 +816,11 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
       'api::company.company',
       'manyToOne',
       'api::information-asset-category.information-asset-category'
+    >;
+    fileupload: Attribute.Relation<
+      'api::company.company',
+      'oneToOne',
+      'api::fileupload.fileupload'
     >;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
@@ -890,6 +900,48 @@ export interface ApiControlDomainControlDomain extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::control-domain.control-domain',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiFileuploadFileupload extends Schema.CollectionType {
+  collectionName: 'fileuploads';
+  info: {
+    singularName: 'fileupload';
+    pluralName: 'fileuploads';
+    displayName: 'fileupload';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    type: Attribute.String;
+    company: Attribute.Relation<
+      'api::fileupload.fileupload',
+      'oneToOne',
+      'api::company.company'
+    >;
+    users_permissions_users: Attribute.Relation<
+      'api::fileupload.fileupload',
+      'oneToMany',
+      'plugin::users-permissions.user'
+    >;
+    media: Attribute.Media<'images' | 'files' | 'videos' | 'audios'>;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::fileupload.fileupload',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::fileupload.fileupload',
       'oneToOne',
       'admin::user'
     > &
@@ -1080,6 +1132,7 @@ export interface ApiRiskTreatmentRiskTreatment extends Schema.CollectionType {
       'oneToMany',
       'api::company.company'
     >;
+    file: Attribute.Media<'images' | 'files' | 'videos' | 'audios', true>;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -1210,6 +1263,7 @@ declare module '@strapi/types' {
       'api::company.company': ApiCompanyCompany;
       'api::control-assessment.control-assessment': ApiControlAssessmentControlAssessment;
       'api::control-domain.control-domain': ApiControlDomainControlDomain;
+      'api::fileupload.fileupload': ApiFileuploadFileupload;
       'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
       'api::risk.risk': ApiRiskRisk;
       'api::risk-category.risk-category': ApiRiskCategoryRiskCategory;
