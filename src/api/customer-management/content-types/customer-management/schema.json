@@ -1,0 +1,99 @@
+{
+  "kind": "collectionType",
+  "collectionName": "customer_managements",
+  "info": {
+    "singularName": "customer-management",
+    "pluralName": "customer-managements",
+    "displayName": "customer_management"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "trading_as": {
+      "type": "string"
+    },
+    "abn_no": {
+      "type": "string"
+    },
+    "acn_no": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "glocal": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "suburb": {
+      "type": "string"
+    },
+    "postal_code": {
+      "type": "string"
+    },
+    "contact_person_name": {
+      "type": "string"
+    },
+    "phone_no": {
+      "type": "string"
+    },
+    "email": {
+      "type": "string"
+    },
+    "alt_person_name": {
+      "type": "string"
+    },
+    "alt_phone_no": {
+      "type": "string"
+    },
+    "alt_email": {
+      "type": "string"
+    },
+    "customer_category": {
+      "type": "string"
+    },
+    "customer_type": {
+      "type": "string"
+    },
+    "data_shared": {
+      "type": "string"
+    },
+    "department_managing": {
+      "type": "string"
+    },
+    "manager": {
+      "type": "string"
+    },
+    "contract_commencement_date": {
+      "type": "string"
+    },
+    "contract_end_date": {
+      "type": "string"
+    },
+    "cia_impact": {
+      "type": "string"
+    },
+    "agreement": {
+      "type": "string"
+    },
+    "approval_status": {
+      "type": "string"
+    },
+    "date_entered": {
+      "type": "string"
+    }
+  }
+}

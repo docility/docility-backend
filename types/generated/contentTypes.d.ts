@@ -907,6 +907,64 @@ export interface ApiControlDomainControlDomain extends Schema.CollectionType {
   };
 }
 
+export interface ApiCustomerManagementCustomerManagement
+  extends Schema.CollectionType {
+  collectionName: 'customer_managements';
+  info: {
+    singularName: 'customer-management';
+    pluralName: 'customer-managements';
+    displayName: 'customer_management';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    name: Attribute.String;
+    trading_as: Attribute.String;
+    abn_no: Attribute.String;
+    acn_no: Attribute.String;
+    website: Attribute.String;
+    glocal: Attribute.String;
+    address: Attribute.String;
+    country: Attribute.String;
+    state: Attribute.String;
+    suburb: Attribute.String;
+    postal_code: Attribute.String;
+    contact_person_name: Attribute.String;
+    phone_no: Attribute.String;
+    email: Attribute.String;
+    alt_person_name: Attribute.String;
+    alt_phone_no: Attribute.String;
+    alt_email: Attribute.String;
+    customer_category: Attribute.String;
+    customer_type: Attribute.String;
+    data_shared: Attribute.String;
+    department_managing: Attribute.String;
+    manager: Attribute.String;
+    contract_commencement_date: Attribute.String;
+    contract_end_date: Attribute.String;
+    cia_impact: Attribute.String;
+    agreement: Attribute.String;
+    approval_status: Attribute.String;
+    date_entered: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer-management.customer-management',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer-management.customer-management',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiFileuploadFileupload extends Schema.CollectionType {
   collectionName: 'fileuploads';
   info: {
@@ -1263,6 +1321,7 @@ declare module '@strapi/types' {
       'api::company.company': ApiCompanyCompany;
       'api::control-assessment.control-assessment': ApiControlAssessmentControlAssessment;
       'api::control-domain.control-domain': ApiControlDomainControlDomain;
+      'api::customer-management.customer-management': ApiCustomerManagementCustomerManagement;
       'api::fileupload.fileupload': ApiFileuploadFileupload;
       'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
       'api::risk.risk': ApiRiskRisk;
