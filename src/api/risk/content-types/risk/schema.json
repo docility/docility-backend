@@ -8,7 +8,14 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": true, 
+    "indexes": [
+      {
+        "name": "id",
+        "fields": ["id"],
+        "unique": true
+      }
+    ]
   },
   "pluginOptions": {},
   "attributes": {

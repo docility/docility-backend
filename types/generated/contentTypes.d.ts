@@ -1056,6 +1056,13 @@ export interface ApiRiskRisk extends Schema.CollectionType {
   };
   options: {
     draftAndPublish: true;
+    indexes: [
+      {
+        name: 'id';
+        fields: ['id'];
+        unique: true;
+      }
+    ];
   };
   attributes: {
     dateCreated: Attribute.String;
