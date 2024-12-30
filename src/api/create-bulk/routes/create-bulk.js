@@ -52,6 +52,14 @@ module.exports = {
         policies: [],
         middlewares: [],
       },
+    }, {
+      method: 'POST',
+      path: '/create-bulk/customers',
+      handler: 'create-bulk.createCustomers',
+      config: { 
+        policies: [],
+        middlewares: [],
+      },
     },
   ],
 };
