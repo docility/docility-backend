@@ -4,7 +4,8 @@
   "info": {
     "singularName": "questionnaire",
     "pluralName": "questionnaires",
-    "displayName": "questionnaire"
+    "displayName": "questionnaire",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -15,6 +16,9 @@
       "type": "string"
     },
     "description": {
+      "type": "string"
+    },
+    "type": {
       "type": "string"
     }
   }

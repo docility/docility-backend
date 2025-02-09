@@ -1117,6 +1117,7 @@ export interface ApiQuestionnaireQuestionnaire extends Schema.CollectionType {
     singularName: 'questionnaire';
     pluralName: 'questionnaires';
     displayName: 'questionnaire';
+    description: '';
   };
   options: {
     draftAndPublish: true;
@@ -1124,6 +1125,7 @@ export interface ApiQuestionnaireQuestionnaire extends Schema.CollectionType {
   attributes: {
     title: Attribute.String;
     description: Attribute.String;
+    type: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
