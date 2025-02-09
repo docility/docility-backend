@@ -1078,6 +1078,103 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
   };
 }
 
+export interface ApiQuestionQuestion extends Schema.CollectionType {
+  collectionName: 'questions';
+  info: {
+    singularName: 'question';
+    pluralName: 'questions';
+    displayName: 'question';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    questionnaires_id: Attribute.String;
+    question: Attribute.String;
+    type: Attribute.String;
+    options: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::question.question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::question.question',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiQuestionnaireQuestionnaire extends Schema.CollectionType {
+  collectionName: 'questionnaires';
+  info: {
+    singularName: 'questionnaire';
+    pluralName: 'questionnaires';
+    displayName: 'questionnaire';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    title: Attribute.String;
+    description: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::questionnaire.questionnaire',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::questionnaire.questionnaire',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiResponsRespons extends Schema.CollectionType {
+  collectionName: 'responses';
+  info: {
+    singularName: 'respons';
+    pluralName: 'responses';
+    displayName: 'respons';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    questionnaire_id: Attribute.String;
+    question_id: Attribute.String;
+    response: Attribute.Text;
+    respondent_id: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::respons.respons',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::respons.respons',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiRiskRisk extends Schema.CollectionType {
   collectionName: 'risks';
   info: {
@@ -1364,6 +1461,9 @@ declare module '@strapi/types' {
       'api::customer-management.customer-management': ApiCustomerManagementCustomerManagement;
       'api::fileupload.fileupload': ApiFileuploadFileupload;
       'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
+      'api::question.question': ApiQuestionQuestion;
+      'api::questionnaire.questionnaire': ApiQuestionnaireQuestionnaire;
+      'api::respons.respons': ApiResponsRespons;
       'api::risk.risk': ApiRiskRisk;
       'api::risk-category.risk-category': ApiRiskCategoryRiskCategory;
       'api::risk-owner.risk-owner': ApiRiskOwnerRiskOwner;
