@@ -907,6 +907,38 @@ export interface ApiControlDomainControlDomain extends Schema.CollectionType {
   };
 }
 
+export interface ApiCustomerCategoryCustomerCategory
+  extends Schema.CollectionType {
+  collectionName: 'customer_categories';
+  info: {
+    singularName: 'customer-category';
+    pluralName: 'customer-categories';
+    displayName: 'customer_category';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    category: Attribute.String;
+    description: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::customer-category.customer-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::customer-category.customer-category',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
 export interface ApiCustomerManagementCustomerManagement
   extends Schema.CollectionType {
   collectionName: 'customer_managements';
@@ -1328,6 +1360,7 @@ declare module '@strapi/types' {
       'api::company.company': ApiCompanyCompany;
       'api::control-assessment.control-assessment': ApiControlAssessmentControlAssessment;
       'api::control-domain.control-domain': ApiControlDomainControlDomain;
+      'api::customer-category.customer-category': ApiCustomerCategoryCustomerCategory;
       'api::customer-management.customer-management': ApiCustomerManagementCustomerManagement;
       'api::fileupload.fileupload': ApiFileuploadFileupload;
       'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
