@@ -7,7 +7,7 @@ module.exports = ({ env }) => ({
         apiKey: env('EMAIL_API_KEY'), // Required
       },
       settings: {
-        defaultFrom: 'DOCILITY <onboarding@resend.dev>',
+        defaultFrom: 'DOCILITY <docility@email.docility.com.au>',
         defaultReplyTo: 'andoyandoy5@gmail.com',
       },
     },
