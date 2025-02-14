@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * risk service
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
+const { createCoreService } = require('@strapi/strapi').factories
 
-module.exports = createCoreService('api::risk.risk');
+module.exports = createCoreService('api::risk.risk')

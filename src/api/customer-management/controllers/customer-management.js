@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * customer-management controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require('@strapi/strapi').factories
 
-module.exports = createCoreController('api::customer-management.customer-management');
+module.exports = createCoreController('api::customer-management.customer-management')

@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * fileupload service
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
+const { createCoreService } = require('@strapi/strapi').factories
 
-module.exports = createCoreService('api::fileupload.fileupload');
+module.exports = createCoreService('api::fileupload.fileupload')

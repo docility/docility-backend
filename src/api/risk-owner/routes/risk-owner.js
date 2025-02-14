@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * risk-owner router
  */
 
-const { createCoreRouter } = require('@strapi/strapi').factories;
+const { createCoreRouter } = require('@strapi/strapi').factories
 
-module.exports = createCoreRouter('api::risk-owner.risk-owner');
+module.exports = createCoreRouter('api::risk-owner.risk-owner')

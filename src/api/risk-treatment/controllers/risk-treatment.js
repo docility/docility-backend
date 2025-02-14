@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * risk-treatment controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require('@strapi/strapi').factories
 
-module.exports = createCoreController('api::risk-treatment.risk-treatment');
+module.exports = createCoreController('api::risk-treatment.risk-treatment')

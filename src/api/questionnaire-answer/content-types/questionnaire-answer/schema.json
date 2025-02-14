@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questionnaire_answers",
+  "info": {
+    "singularName": "questionnaire-answer",
+    "pluralName": "questionnaire-answers",
+    "displayName": "questionnaire_answer"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "questionnaire_id": {
+      "type": "string"
+    },
+    "question_id": {
+      "type": "string"
+    },
+    "company_id": {
+      "type": "string"
+    },
+    "answer": {
+      "type": "string"
+    }
+  }
+}

@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * questionnaire service
  */
 
-const { createCoreService } = require('@strapi/strapi').factories;
+const { createCoreService } = require('@strapi/strapi').factories
 
-module.exports = createCoreService('api::questionnaire.questionnaire');
+module.exports = createCoreService('api::questionnaire.questionnaire')

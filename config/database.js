@@ -1,7 +1,7 @@
-const path = require('path');
+const path = require('path')
 
 module.exports = ({ env }) => {
-  const client = env('DATABASE_CLIENT', 'mysql');
+  const client = env('DATABASE_CLIENT', 'mysql')
 
   const connections = {
     mysql: {
@@ -18,10 +18,7 @@ module.exports = ({ env }) => {
           ca: env('DATABASE_SSL_CA', undefined),
           capath: env('DATABASE_SSL_CAPATH', undefined),
           cipher: env('DATABASE_SSL_CIPHER', undefined),
-          rejectUnauthorized: env.bool(
-            'DATABASE_SSL_REJECT_UNAUTHORIZED',
-            true
-          ),
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
         },
       },
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
@@ -39,10 +36,7 @@ module.exports = ({ env }) => {
           ca: env('DATABASE_SSL_CA', undefined),
           capath: env('DATABASE_SSL_CAPATH', undefined),
           cipher: env('DATABASE_SSL_CIPHER', undefined),
-          rejectUnauthorized: env.bool(
-            'DATABASE_SSL_REJECT_UNAUTHORIZED',
-            true
-          ),
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
         },
       },
       pool: { min: env.int('DATABASE_POOL_MIN', 2), max: env.int('DATABASE_POOL_MAX', 10) },
@@ -61,10 +55,7 @@ module.exports = ({ env }) => {
           ca: env('DATABASE_SSL_CA', undefined),
           capath: env('DATABASE_SSL_CAPATH', undefined),
           cipher: env('DATABASE_SSL_CIPHER', undefined),
-          rejectUnauthorized: env.bool(
-            'DATABASE_SSL_REJECT_UNAUTHORIZED',
-            true
-          ),
+          rejectUnauthorized: env.bool('DATABASE_SSL_REJECT_UNAUTHORIZED', true),
         },
         schema: env('DATABASE_SCHEMA', 'public'),
       },
@@ -72,15 +63,11 @@ module.exports = ({ env }) => {
     },
     sqlite: {
       connection: {
-        filename: path.join(
-          __dirname,
-          '..',
-          env('DATABASE_FILENAME', '.tmp/data.db')
-        ),
+        filename: path.join(__dirname, '..', env('DATABASE_FILENAME', '.tmp/data.db')),
       },
       useNullAsDefault: true,
     },
-  };
+  }
   console.log(client)
   return {
     connection: {
@@ -88,5 +75,5 @@ module.exports = ({ env }) => {
       ...connections[client],
       acquireConnectionTimeout: env.int('DATABASE_CONNECTION_TIMEOUT', 60000),
     },
-  };
-};
+  }
+}

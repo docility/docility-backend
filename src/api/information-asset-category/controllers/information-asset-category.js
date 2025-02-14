@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * information-asset-category controller
  */
 
-const { createCoreController } = require('@strapi/strapi').factories;
+const { createCoreController } = require('@strapi/strapi').factories
 
-module.exports = createCoreController('api::information-asset-category.information-asset-category');
+module.exports = createCoreController('api::information-asset-category.information-asset-category')

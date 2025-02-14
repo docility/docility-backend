@@ -10,7 +10,7 @@ module.exports = [
       headers: [
         'Content-Type',
         'Authorization',
-        'userId',  // Allow the userId header
+        'userId', // Allow the userId header
         'X-Requested-With',
         'Accept',
         'Origin',
@@ -25,4 +25,4 @@ module.exports = [
   'strapi::session',
   'strapi::favicon',
   'strapi::public',
-];
+]
