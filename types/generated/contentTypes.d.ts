@@ -1002,6 +1002,7 @@ export interface ApiQuestionnaireAnswerQuestionnaireAnswer extends Schema.Collec
     singularName: 'questionnaire-answer'
     pluralName: 'questionnaire-answers'
     displayName: 'questionnaire_answer'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -1011,6 +1012,8 @@ export interface ApiQuestionnaireAnswerQuestionnaireAnswer extends Schema.Collec
     question_id: Attribute.String
     company_id: Attribute.String
     answer: Attribute.String
+    supplier_id: Attribute.String
+    type: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

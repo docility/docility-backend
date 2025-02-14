@@ -4,7 +4,8 @@
   "info": {
     "singularName": "questionnaire-answer",
     "pluralName": "questionnaire-answers",
-    "displayName": "questionnaire_answer"
+    "displayName": "questionnaire_answer",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -21,6 +22,12 @@
       "type": "string"
     },
     "answer": {
+      "type": "string"
+    },
+    "supplier_id": {
+      "type": "string"
+    },
+    "type": {
       "type": "string"
     }
   }

@@ -585,7 +585,6 @@ module.exports = {
     }
   },
   submitAnswer: async (ctx) => {
-
     try {
       const answerData = ctx.request.body.data // Array of category data
 
@@ -594,52 +593,43 @@ module.exports = {
         return ctx.badRequest('Expected an array of answer data')
       }
 
-      // Immediately respond with a success message (without waiting for the creation process)
-     
+      console.log('Start processing answers')
 
-      // Create categories asynchronously without blocking the response
-      setImmediate(async () => {
+      // Process all answers and wait for them to complete
+      const answerDataPromises = answerData.map(async (data) => {
         try {
-          const answerDataPromises = answerData.map((data) => {
-            console.log(data)
-            return strapi.entityService
-              .create('api::questionnaire-answer.questionnaire-answer', {
-                data: {
-                  ...data,
-                  publishedAt: new Date(), // Set the publishedAt field to publish the content
-                },
-              })
-              .catch((err) => {
-                console.error('Error creating Company:', err)
-              })
-          })
-          console.log('start promise')
-          // Wait for all category creation promises to resolve
-          await Promise.all(answerDataPromises)
-          console.log('end promise')
-          return ctx.body = {
-            message: 'Company creation has been initiated. The process is running in the background.',
-            is_success: true
-          }
-          console.log('send socket')
-        } catch (error) {
-          console.error('Error during Company creation:', error)
-          // Emit the error message to the client if something goes wrong
-          return ctx.body = {
-            message: 'error',
-            is_success: false
-          }
+          return await strapi.entityService.create(
+            'api::questionnaire-answer.questionnaire-answer',
+            {
+              data: {
+                ...data,
+                publishedAt: new Date(), // Set the publishedAt field to publish the content
+              },
+            }
+          )
+        } catch (err) {
+          console.error('Error creating Answer:', err)
+          return null
         }
       })
+
+      // Wait for all answers to be created before responding
+      const results = await Promise.all(answerDataPromises)
+
+      console.log('Finished processing answers')
+
+      // Filter out failed entries (if any)
+      const successfulResults = results.filter((res) => res !== null)
+
+      return ctx.send({
+        message: 'All answers have been processed successfully.',
+        is_success: successfulResults.length === answerData.length, // true if all succeeded
+        created_count: successfulResults.length,
+        failed_count: answerData.length - successfulResults.length,
+      })
     } catch (error) {
-      // Handle any errors that occur during the process
-      console.error(error)
-
-       
-
-      // Send error response
-      ctx.body = { message: 'Error occurred during bulk creation', error }
-      ctx.status = 500
+      console.error('Error during answer creation:', error)
+      return ctx.internalServerError('Error occurred during bulk creation')
     }
-  }
+  },
 }
