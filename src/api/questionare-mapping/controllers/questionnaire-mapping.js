@@ -117,7 +117,7 @@ module.exports = {
     <h2>Hello, ${
       questionnaireData.data.type === 'COMPANY'
         ? companyDetails[0].name
-        : companyDetails[0].support_email
+        : companyDetails[0].supplier_name
     } !</h2>
     <p>We appreciate your time and invite you to complete our questionnaire. Your feedback is valuable to us.</p>
     <p>Click the button below to access the questionnaire:</p>
@@ -174,7 +174,7 @@ module.exports = {
           })
         }
 
-        const company = await strapi.entityService.update(
+        company = await strapi.entityService.update(
           'api::company-questionnaire.company-questionnaire',
           questionnaireId,
           {
