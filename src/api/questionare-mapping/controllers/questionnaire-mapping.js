@@ -150,7 +150,7 @@ module.exports = {
 
      console.log("Company:", company);
       ctx.body = {
-        data: {
+        data: { 
           company,
           questions,
           questionnaire,
