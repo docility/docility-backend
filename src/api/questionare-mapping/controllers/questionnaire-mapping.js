@@ -166,7 +166,7 @@ module.exports = {
         )
 
         // Check if status is not "Completed"
-        if (existingCompany && existingCompany.status !== 'completed') {
+        if (existingCompany && existingCompany.status === 'completed') {
           return ctx.send({
             message: 'completed',
             questionnaireStatus: 'completed',
