@@ -1,7 +1,7 @@
-'use strict';
-const jwt = require('jsonwebtoken');
+"use strict";
+const jwt = require("jsonwebtoken");
 // Import the utility function for emitting messages
-const emitMessageToClient = require('../../utils/socket');
+const emitMessageToClient = require("../../utils/socket");
 
 module.exports = {
   // Bulk create categories
@@ -511,7 +511,7 @@ module.exports = {
           message: "Error occurred during bulk creation, Please Try Again!",
         });
       });
- 
+
       // Send error response
       ctx.body = { message: "Error occurred during bulk creation", error };
       ctx.status = 500;

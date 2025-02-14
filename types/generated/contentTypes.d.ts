@@ -822,6 +822,7 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
       'oneToOne',
       'api::fileupload.fileupload'
     >;
+    email: Attribute.String;
     createdAt: Attribute.DateTime;
     updatedAt: Attribute.DateTime;
     publishedAt: Attribute.DateTime;
@@ -833,6 +834,41 @@ export interface ApiCompanyCompany extends Schema.CollectionType {
       Attribute.Private;
     updatedBy: Attribute.Relation<
       'api::company.company',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+  };
+}
+
+export interface ApiCompanyQuestionnaireCompanyQuestionnaire
+  extends Schema.CollectionType {
+  collectionName: 'company_questionnaires';
+  info: {
+    singularName: 'company-questionnaire';
+    pluralName: 'company-questionnaires';
+    displayName: 'company-questionnaire';
+    description: '';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    company_id: Attribute.String;
+    questionnaire_id: Attribute.String;
+    url: Attribute.UID;
+    supplier_id: Attribute.String;
+    createdAt: Attribute.DateTime;
+    updatedAt: Attribute.DateTime;
+    publishedAt: Attribute.DateTime;
+    createdBy: Attribute.Relation<
+      'api::company-questionnaire.company-questionnaire',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private;
+    updatedBy: Attribute.Relation<
+      'api::company-questionnaire.company-questionnaire',
       'oneToOne',
       'admin::user'
     > &
@@ -1457,6 +1493,7 @@ declare module '@strapi/types' {
       'plugin::users-permissions.role': PluginUsersPermissionsRole;
       'plugin::users-permissions.user': PluginUsersPermissionsUser;
       'api::company.company': ApiCompanyCompany;
+      'api::company-questionnaire.company-questionnaire': ApiCompanyQuestionnaireCompanyQuestionnaire;
       'api::control-assessment.control-assessment': ApiControlAssessmentControlAssessment;
       'api::control-domain.control-domain': ApiControlDomainControlDomain;
       'api::customer-category.customer-category': ApiCustomerCategoryCustomerCategory;

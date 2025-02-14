@@ -35,6 +35,9 @@
       "relation": "oneToOne",
       "target": "api::fileupload.fileupload",
       "mappedBy": "company"
+    },
+    "email": {
+      "type": "string"
     }
   }
 }

@@ -1,0 +1,28 @@
+{
+  "kind": "collectionType",
+  "collectionName": "company_questionnaires",
+  "info": {
+    "singularName": "company-questionnaire",
+    "pluralName": "company-questionnaires",
+    "displayName": "company-questionnaire",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "company_id": {
+      "type": "string"
+    },
+    "questionnaire_id": {
+      "type": "string"
+    },
+    "url": {
+      "type": "uid"
+    },
+    "supplier_id": {
+      "type": "string"
+    }
+  }
+}
