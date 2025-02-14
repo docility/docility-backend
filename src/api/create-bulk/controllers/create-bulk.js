@@ -584,4 +584,62 @@ module.exports = {
       ctx.status = 500
     }
   },
+  submitAnswer: async (ctx) => {
+
+    try {
+      const answerData = ctx.request.body.data // Array of category data
+
+      // Ensure the data is an array
+      if (!Array.isArray(answerData)) {
+        return ctx.badRequest('Expected an array of answer data')
+      }
+
+      // Immediately respond with a success message (without waiting for the creation process)
+     
+
+      // Create categories asynchronously without blocking the response
+      setImmediate(async () => {
+        try {
+          const answerDataPromises = answerData.map((data) => {
+            console.log(data)
+            return strapi.entityService
+              .create('api::questionnaire-answer.questionnaire-answer', {
+                data: {
+                  ...data,
+                  publishedAt: new Date(), // Set the publishedAt field to publish the content
+                },
+              })
+              .catch((err) => {
+                console.error('Error creating Company:', err)
+              })
+          })
+          console.log('start promise')
+          // Wait for all category creation promises to resolve
+          await Promise.all(answerDataPromises)
+          console.log('end promise')
+          return ctx.body = {
+            message: 'Company creation has been initiated. The process is running in the background.',
+            is_success: true
+          }
+          console.log('send socket')
+        } catch (error) {
+          console.error('Error during Company creation:', error)
+          // Emit the error message to the client if something goes wrong
+          return ctx.body = {
+            message: 'error',
+            is_success: false
+          }
+        }
+      })
+    } catch (error) {
+      // Handle any errors that occur during the process
+      console.error(error)
+
+       
+
+      // Send error response
+      ctx.body = { message: 'Error occurred during bulk creation', error }
+      ctx.status = 500
+    }
+  }
 }

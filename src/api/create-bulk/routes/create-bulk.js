@@ -73,5 +73,14 @@ module.exports = {
         middlewares: [],
       },
     },
+    {
+      method: 'POST',
+      path: '/create-bulk/submitAnswer',
+      handler: 'create-bulk.submitAnswer',
+      config: {
+        policies: [],
+        middlewares: [],
+      },
+    },
   ],
 }

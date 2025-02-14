@@ -25,13 +25,26 @@ module.exports = {
           .catch((err) => {
             console.error('Error creating Company:', err)
           })
-
-        const companyDetails = await strapi.entityService.findMany('api::company.company', {
-          filters: {
-            id: questionnaireData.data.company_id,
-          },
-          pagination: { limit: 1 }, // Ensure only one result is returned
-        })
+        var companyDetails
+        try {
+          if (questionnaireData.data.type == 'COMPANY') {
+            companyDetails = await strapi.entityService.findMany('api::company.company', {
+              filters: {
+                id: questionnaireData.data.company_id,
+              },
+              pagination: { limit: 1 }, // Ensure only one result is returned
+            })
+          } else {
+            companyDetails = await strapi.entityService.findMany('api::supplier.supplier', {
+              filters: {
+                id: questionnaireData.data.supplier_id,
+              },
+              pagination: { limit: 1 }, // Ensure only one result is returned
+            })
+          }
+        } catch (error) {
+          console.log(error)
+        }
 
         console.log('result', result)
         ctx.body = {
@@ -44,7 +57,10 @@ module.exports = {
         console.log('send socket')
         console.log('company', companyDetails)
         await strapi.plugins['email'].services.email.send({
-          to: companyDetails[0].email,
+          to:
+            questionnaireData.data.type === 'COMPANY'
+              ? companyDetails[0].email
+              : companyDetails[0].support_person_email,
           subject: 'Docility Questionnaire',
           html: `<!DOCTYPE html>
 <html>
@@ -98,7 +114,11 @@ module.exports = {
 </head>
 <body>
   <div class="container">
-    <h2>Hello, ${companyDetails[0].name} !</h2>
+    <h2>Hello, ${
+      questionnaireData.data.type === 'COMPANY'
+        ? companyDetails[0].name
+        : companyDetails[0].support_email
+    } !</h2>
     <p>We appreciate your time and invite you to complete our questionnaire. Your feedback is valuable to us.</p>
     <p>Click the button below to access the questionnaire:</p>
     <a href="https://docility.com.au/assessment/${url}" class="button">Start Questionnaire</a>
@@ -154,14 +174,8 @@ module.exports = {
         console.log('No matching questionnaire found for URL:', searchQuery)
       }
 
-      // Get the first result if available
-
-      const companyDetails = await strapi.entityService.findMany('api::company.company', {
-        filters: {
-          id: company.company_id,
-        },
-        pagination: { limit: 1 }, // Ensure only one result is returned
-      })
+      console.log('result', result)
+      console.log('compay', company)
 
       const questionnaire = await strapi.entityService.findMany(
         'api::questionnaire.questionnaire',
@@ -180,6 +194,24 @@ module.exports = {
           questionnaires_id: company.questionnaire_id,
         },
       })
+
+      var companyDetails
+      // Get the first result if available
+      if (questionnaire[0].type === 'Company') {
+        companyDetails = await strapi.entityService.findMany('api::company.company', {
+          filters: {
+            id: company.company_id,
+          },
+          pagination: { limit: 1 }, // Ensure only one result is returned
+        })
+      } else {
+        companyDetails = await strapi.entityService.findMany('api::supplier.supplier', {
+          filters: {
+            id: result[0].supplier_id,
+          },
+          pagination: { limit: 1 }, // Ensure only one result is returned
+        })
+      }
 
       console.log('Company:', questions)
       ctx.body = {
