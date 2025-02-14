@@ -587,7 +587,7 @@ module.exports = {
   submitAnswer: async (ctx) => {
     try {
       const answerData = ctx.request.body.data // Array of category data
-
+      const url = ctx.request.body.url
       // Ensure the data is an array
       if (!Array.isArray(answerData)) {
         return ctx.badRequest('Expected an array of answer data')
@@ -612,6 +612,28 @@ module.exports = {
           return null
         }
       })
+
+      const companyQuestionnaire = await strapi.entityService.findMany(
+        'api::company-questionnaire.company-questionnaire',
+        {
+          filters: {
+            url: url, // Update only the desired field
+          },
+        }
+      )
+
+      console.log('questionnaire_id', companyQuestionnaire)
+
+      const update = await strapi.entityService.update(
+        'api::company-questionnaire.company-questionnaire',
+        companyQuestionnaire[0].id, // Use extracted ID
+        {
+          data: {
+            status: 'completed', // Update only the desired field
+          },
+        }
+      )
+      console.log('update questionnaire', update)
 
       // Wait for all answers to be created before responding
       const results = await Promise.all(answerDataPromises)

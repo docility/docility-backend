@@ -159,12 +159,27 @@ module.exports = {
       if (result.length > 0) {
         const questionnaireId = result[0].id
 
-        company = await strapi.entityService.update(
+        const existingCompany = await strapi.entityService.findOne(
           'api::company-questionnaire.company-questionnaire',
-          questionnaireId, // Use extracted ID
+          questionnaireId,
+          { fields: ['status'] } // Retrieve only the status field
+        )
+
+        // Check if status is not "Completed"
+        if (existingCompany && existingCompany.status !== 'completed') {
+          return ctx.send({
+            message: 'completed',
+            questionnaireStatus: 'completed',
+            is_success: 'true',
+          })
+        }
+
+        const company = await strapi.entityService.update(
+          'api::company-questionnaire.company-questionnaire',
+          questionnaireId,
           {
             data: {
-              status: 'in-progress', // Update only the desired field
+              status: 'in-progress', // Update only if status is not "Completed"
             },
           }
         )
