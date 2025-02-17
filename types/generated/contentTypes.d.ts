@@ -952,6 +952,7 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
     singularName: 'question'
     pluralName: 'questions'
     displayName: 'question'
+    description: ''
   }
   options: {
     draftAndPublish: true
@@ -961,6 +962,8 @@ export interface ApiQuestionQuestion extends Schema.CollectionType {
     question: Attribute.String
     type: Attribute.String
     options: Attribute.String
+    topic: Attribute.String
+    notes: Attribute.String
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1025,6 +1028,38 @@ export interface ApiQuestionnaireAnswerQuestionnaireAnswer extends Schema.Collec
       Attribute.Private
     updatedBy: Attribute.Relation<
       'api::questionnaire-answer.questionnaire-answer',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+  }
+}
+
+export interface ApiQuestionnaireTopicQuestionnaireTopic extends Schema.CollectionType {
+  collectionName: 'questionnaire_topics'
+  info: {
+    singularName: 'questionnaire-topic'
+    pluralName: 'questionnaire-topics'
+    displayName: 'questionnaire_topic'
+  }
+  options: {
+    draftAndPublish: true
+  }
+  attributes: {
+    title: Attribute.String
+    description: Attribute.String
+    status: Attribute.String
+    createdAt: Attribute.DateTime
+    updatedAt: Attribute.DateTime
+    publishedAt: Attribute.DateTime
+    createdBy: Attribute.Relation<
+      'api::questionnaire-topic.questionnaire-topic',
+      'oneToOne',
+      'admin::user'
+    > &
+      Attribute.Private
+    updatedBy: Attribute.Relation<
+      'api::questionnaire-topic.questionnaire-topic',
       'oneToOne',
       'admin::user'
     > &
@@ -1313,6 +1348,7 @@ declare module '@strapi/types' {
       'api::question.question': ApiQuestionQuestion
       'api::questionnaire.questionnaire': ApiQuestionnaireQuestionnaire
       'api::questionnaire-answer.questionnaire-answer': ApiQuestionnaireAnswerQuestionnaireAnswer
+      'api::questionnaire-topic.questionnaire-topic': ApiQuestionnaireTopicQuestionnaireTopic
       'api::respons.respons': ApiResponsRespons
       'api::risk.risk': ApiRiskRisk
       'api::risk-category.risk-category': ApiRiskCategoryRiskCategory

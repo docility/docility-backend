@@ -63,74 +63,74 @@ module.exports = {
               : companyDetails[0].support_person_email,
           subject: 'Docility Questionnaire',
           html: `<!DOCTYPE html>
-<html>
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Access Your Questionnaire</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f4f4f4;
-      margin: 0;
-      padding: 20px;
-    }
-    .container {
-      max-width: 600px;
-      background: #ffffff;
-      padding: 20px;
-      border-radius: 8px;
-      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-      margin: auto;
-    }
-    h2 {
-      color: #333;
-    }
-    p {
-      color: #555;
-      font-size: 16px;
-      line-height: 1.5;
-    }
-    .button {
-      display: inline-block;
-      background-color: #007bff;
-      color: #ffffff;
-      padding: 12px 20px;
-      text-decoration: none;
-      border-radius: 5px;
-      font-size: 16px;
-      margin-top: 20px;
-    }
-    .button:hover {
-      background-color: #0056b3;
-    }
-    .footer {
-      margin-top: 20px;
-      font-size: 12px;
-      color: #888;
-      text-align: center;
-    }
-  </style>
-</head>
-<body>
-  <div class="container">
-    <h2>Hello, ${
-      questionnaireData.data.type === 'COMPANY'
-        ? companyDetails[0].name
-        : companyDetails[0].supplier_name
-    } !</h2>
-    <p>We appreciate your time and invite you to complete our questionnaire. Your feedback is valuable to us.</p>
-    <p>Click the button below to access the questionnaire:</p>
-    <a href="https://docility.com.au/assessment/${url}" class="button">Start Questionnaire</a>
-    <p>If the button doesn't work, copy and paste this link into your browser:</p>
-    <a href="https://docility.com.au/assessment/${url}">https://docility.com.au/assessment/${url}</a>
-    <div class="footer">
-      <p>Docility. All rights reserved.</p>
-    </div>
-  </div>
-</body>
-</html>
-`,
+                <html>
+                <head>
+                  <meta charset="UTF-8">
+                  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                  <title>Access Your Questionnaire</title>
+                  <style>
+                    body {
+                      font-family: Arial, sans-serif;
+                      background-color: #f4f4f4;
+                      margin: 0;
+                      padding: 20px;
+                    }
+                    .container {
+                      max-width: 600px;
+                      background: #ffffff;
+                      padding: 20px;
+                      border-radius: 8px;
+                      box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+                      margin: auto;
+                    }
+                    h2 {
+                      color: #333;
+                    }
+                    p {
+                      color: #555;
+                      font-size: 16px;
+                      line-height: 1.5;
+                    }
+                    .button {
+                      display: inline-block;
+                      background-color: #007bff;
+                      color: #ffffff;
+                      padding: 12px 20px;
+                      text-decoration: none;
+                      border-radius: 5px;
+                      font-size: 16px;
+                      margin-top: 20px;
+                    }
+                    .button:hover {
+                      background-color: #0056b3;
+                    }
+                    .footer {
+                      margin-top: 20px;
+                      font-size: 12px;
+                      color: #888;
+                      text-align: center;
+                    }
+                  </style>
+                </head>
+                <body>
+                  <div class="container">
+                    <h2>Hello, ${
+                      questionnaireData.data.type === 'COMPANY'
+                        ? companyDetails[0].name
+                        : companyDetails[0].supplier_name
+                    } !</h2>
+                    <p>We appreciate your time and invite you to complete our questionnaire. Your feedback is valuable to us.</p>
+                    <p>Click the button below to access the questionnaire:</p>
+                    <a href="https://docility.com.au/assessment/${url}" class="button">Start Questionnaire</a>
+                    <p>If the button doesn't work, copy and paste this link into your browser:</p>
+                    <a href="https://docility.com.au/assessment/${url}">https://docility.com.au/assessment/${url}</a>
+                    <div class="footer">
+                      <p>Docility. All rights reserved.</p>
+                    </div>
+                  </div>
+                </body>
+                </html>
+          `,
         })
       } catch (error) {
         console.log(error)

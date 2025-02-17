@@ -1,0 +1,24 @@
+{
+  "kind": "collectionType",
+  "collectionName": "questionnaire_topics",
+  "info": {
+    "singularName": "questionnaire-topic",
+    "pluralName": "questionnaire-topics",
+    "displayName": "questionnaire_topic"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "title": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}
