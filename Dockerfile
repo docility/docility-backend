@@ -23,4 +23,4 @@ RUN npm run build
 EXPOSE 1337    
 
 # Command to run the Strapi application
-CMD ["npm", "start"]
+CMD ["npm", "run","develop"]
