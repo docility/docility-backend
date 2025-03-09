@@ -1102,18 +1102,9 @@ export interface ApiRiskRisk extends Schema.CollectionType {
   }
   options: {
     draftAndPublish: true
-    indexes: [
-      {
-        name: 'id'
-        fields: ['id']
-        unique: true
-      }
-    ]
   }
   attributes: {
     dateCreated: Attribute.String
-    riskOwner: Attribute.String
-    riskCategory: Attribute.String
     threat: Attribute.String
     vulnerability: Attribute.String
     informationAsset: Attribute.String
@@ -1145,6 +1136,12 @@ export interface ApiRiskRisk extends Schema.CollectionType {
     riskControlMap: Attribute.String
     currentControlEffective: Attribute.String
     currentControlInPlace: Attribute.String
+    riskOwner: Attribute.Relation<'api::risk.risk', 'oneToOne', 'api::risk-owner.risk-owner'>
+    riskCategory: Attribute.Relation<
+      'api::risk.risk',
+      'oneToOne',
+      'api::risk-category.risk-category'
+    >
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1168,6 +1165,7 @@ export interface ApiRiskCategoryRiskCategory extends Schema.CollectionType {
     category_domain: Attribute.String
     description: Attribute.Text
     categoryType: Attribute.String
+    risk: Attribute.Relation<'api::risk-category.risk-category', 'oneToOne', 'api::risk.risk'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime
@@ -1195,6 +1193,7 @@ export interface ApiRiskOwnerRiskOwner extends Schema.CollectionType {
     position: Attribute.String
     department: Attribute.String
     name: Attribute.String
+    risk: Attribute.Relation<'api::risk-owner.risk-owner', 'oneToOne', 'api::risk.risk'>
     createdAt: Attribute.DateTime
     updatedAt: Attribute.DateTime
     publishedAt: Attribute.DateTime

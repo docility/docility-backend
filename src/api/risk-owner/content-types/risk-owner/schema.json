@@ -26,6 +26,12 @@
     },
     "name": {
       "type": "string"
+    },
+    "risk": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::risk.risk",
+      "mappedBy": "riskOwner"
     }
   }
 }

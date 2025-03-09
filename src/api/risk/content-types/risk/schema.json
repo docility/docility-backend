@@ -8,24 +8,11 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true,
-    "indexes": [
-      {
-        "name": "id",
-        "fields": ["id"],
-        "unique": true
-      }
-    ]
+    "draftAndPublish": true
   },
   "pluginOptions": {},
   "attributes": {
     "dateCreated": {
-      "type": "string"
-    },
-    "riskOwner": {
-      "type": "string"
-    },
-    "riskCategory": {
       "type": "string"
     },
     "threat": {
@@ -120,6 +107,18 @@
     },
     "currentControlInPlace": {
       "type": "string"
+    },
+    "riskOwner": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::risk-owner.risk-owner",
+      "inversedBy": "risk"
+    },
+    "riskCategory": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::risk-category.risk-category",
+      "inversedBy": "risk"
     }
   }
 }
