@@ -1,0 +1,195 @@
+{
+  "kind": "collectionType",
+  "collectionName": "suppliers",
+  "info": {
+    "singularName": "supplier",
+    "pluralName": "suppliers",
+    "displayName": "supplier",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "supplier_id": {
+      "type": "string"
+    },
+    "supplier_name": {
+      "type": "string"
+    },
+    "supplier_trading_as": {
+      "type": "string"
+    },
+    "abn_no": {
+      "type": "string"
+    },
+    "acn_no": {
+      "type": "string"
+    },
+    "website": {
+      "type": "string"
+    },
+    "supplier_address": {
+      "type": "string"
+    },
+    "supplier_country": {
+      "type": "string"
+    },
+    "supplier_state": {
+      "type": "string"
+    },
+    "supplier_suburb": {
+      "type": "string"
+    },
+    "supplier_postal_code": {
+      "type": "string"
+    },
+    "supplier_contact_person_name": {
+      "type": "string"
+    },
+    "supplier_contact_person_number": {
+      "type": "string"
+    },
+    "supplier_contact_person_email": {
+      "type": "string"
+    },
+    "supplier_24x7_contact_person_name": {
+      "type": "string"
+    },
+    "supplier_24x7_contact_person_number": {
+      "type": "string"
+    },
+    "supplier_24x7_contact_person_email": {
+      "type": "string"
+    },
+    "supplier_glocal": {
+      "type": "string"
+    },
+    "supplier_payment_terms": {
+      "type": "string"
+    },
+    "supplier_category": {
+      "type": "string"
+    },
+    "supplier_type": {
+      "type": "string"
+    },
+    "supplier_data_shared": {
+      "type": "string"
+    },
+    "supplier_department_managing": {
+      "type": "string"
+    },
+    "supplier_owner": {
+      "type": "string"
+    },
+    "sla_details": {
+      "type": "string"
+    },
+    "supplier_sla_applicable": {
+      "type": "string"
+    },
+    "supplier_credit_limit": {
+      "type": "string"
+    },
+    "supplier_special_condition_notes": {
+      "type": "string"
+    },
+    "bank_bsb": {
+      "type": "string"
+    },
+    "supplier_purpose": {
+      "type": "string"
+    },
+    "bank_account_no": {
+      "type": "string"
+    },
+    "bank_account_name": {
+      "type": "string"
+    },
+    "supplier_ongoing_management": {
+      "type": "string"
+    },
+    "exit_terms": {
+      "type": "string"
+    },
+    "certification_iso_27001": {
+      "type": "string"
+    },
+    "certification_iso_9001": {
+      "type": "string"
+    },
+    "certification_iso_14001": {
+      "type": "string"
+    },
+    "certification_iso_45001": {
+      "type": "string"
+    },
+    "certification_modern_slavery_act": {
+      "type": "string"
+    },
+    "estimated_annual_budget": {
+      "type": "string"
+    },
+    "contract_commencement_date": {
+      "type": "string"
+    },
+    "contract_end_date": {
+      "type": "string"
+    },
+    "modern_slavery_published_date": {
+      "type": "string"
+    },
+    "other_certification": {
+      "type": "string"
+    },
+    "other_certification_exists": {
+      "type": "string"
+    },
+    "assessment_cia_impact": {
+      "type": "string"
+    },
+    "assessment_threat": {
+      "type": "string"
+    },
+    "assessment_risk_assessment_matrix": {
+      "type": "string"
+    },
+    "assessment_likelihood": {
+      "type": "string"
+    },
+    "assessment_impact": {
+      "type": "text"
+    },
+    "assessment_inherent_risl_level": {
+      "type": "string"
+    },
+    "assessment_risk_completed": {
+      "type": "string"
+    },
+    "supplier_assessment_required": {
+      "type": "string"
+    },
+    "assessment_due_date": {
+      "type": "string"
+    },
+    "assessment_status": {
+      "type": "string"
+    },
+    "assessment_reviewer_person": {
+      "type": "string"
+    },
+    "supplier_assessment_agreement": {
+      "type": "string"
+    },
+    "supplier_approval_status": {
+      "type": "string"
+    },
+    "supplier_date_entered": {
+      "type": "string"
+    },
+    "supplier_decision_date": {
+      "type": "string"
+    }
+  }
+}

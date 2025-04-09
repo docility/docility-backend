@@ -4,4 +4,7 @@ export default ({ env }) => ({
   app: {
     keys: env.array('APP_KEYS'),
   },
+  cors: {
+    origin: ['http://localhost:8080', 'https://yourfrontend.com']
+  },
 });

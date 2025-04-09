@@ -1,0 +1,41 @@
+{
+  "kind": "collectionType",
+  "collectionName": "risk_treatments",
+  "info": {
+    "singularName": "risk-treatment",
+    "pluralName": "risk-treatments",
+    "displayName": "risk_treatment",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "treatmentOption": {
+      "type": "string"
+    },
+    "description": {
+      "type": "text"
+    },
+    "whenToUse": {
+      "type": "string"
+    },
+    "companies": {
+      "type": "relation",
+      "relation": "oneToMany",
+      "target": "api::company.company",
+      "mappedBy": "risk_treatment"
+    },
+    "file": {
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ],
+      "type": "media",
+      "multiple": true
+    }
+  }
+}

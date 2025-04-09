@@ -1,0 +1,40 @@
+{
+  "kind": "collectionType",
+  "collectionName": "companies",
+  "info": {
+    "singularName": "company",
+    "pluralName": "companies",
+    "displayName": "company",
+    "description": ""
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "address": {
+      "type": "string"
+    },
+    "risk_treatment": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::risk-treatment.risk-treatment",
+      "inversedBy": "companies"
+    },
+    "information_asset_category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::information-asset-category.information-asset-category",
+      "inversedBy": "companies"
+    },
+    "fileupload": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "api::fileupload.fileupload",
+      "mappedBy": "company"
+    }
+  }
+}

@@ -1,0 +1,27 @@
+{
+  "kind": "collectionType",
+  "collectionName": "responses",
+  "info": {
+    "singularName": "respons",
+    "pluralName": "responses",
+    "displayName": "respons"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "pluginOptions": {},
+  "attributes": {
+    "questionnaire_id": {
+      "type": "string"
+    },
+    "question_id": {
+      "type": "string"
+    },
+    "response": {
+      "type": "text"
+    },
+    "respondent_id": {
+      "type": "string"
+    }
+  }
+}
