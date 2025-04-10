@@ -52,7 +52,7 @@ export default {
         ctx.body = {
           message: 'The process is running in the background.',
         }
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'info',
           message: 'Company successfully saved!',
         })
