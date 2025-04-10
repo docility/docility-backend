@@ -1,9 +1,8 @@
-'use strict'
-const jwt = require('jsonwebtoken')
-// Import the utility function for emitting messages
-const emitMessageToClient = require('../../utils/socket')
 
-module.exports = {
+import emitMessageToClient from '../../utils/socket'
+import { Jwt as jwt } from 'jsonwebtoken'
+
+export default {
   // Bulk create categories
   riskCategories: async (ctx) => {
     const userId = ctx.headers['userid']
@@ -45,7 +44,7 @@ module.exports = {
           await Promise.all(categoryPromises)
           console.log('end promise')
           // Emit the message to the client once all categories are created
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'info',
             message: 'Categories successfully saved!',
           })
@@ -53,7 +52,7 @@ module.exports = {
         } catch (error) {
           console.error('Error during category creation:', error)
           // Emit the error message to the client if something goes wrong
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'error',
             message: 'Error occurred during bulk creation, Please Try Again!',
           })
@@ -65,7 +64,7 @@ module.exports = {
 
       // Emit the error message to the client if something goes wrong
       setImmediate(() => {
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'error',
           message: 'Error occurred during bulk creation, Please Try Again!',
         })
@@ -118,7 +117,7 @@ module.exports = {
           await Promise.all(categoryPromises)
           console.log('end promise')
           // Emit the message to the client once all categories are created
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'info',
             message: 'Asset Categories successfully saved!',
           })
@@ -126,7 +125,7 @@ module.exports = {
         } catch (error) {
           console.error('Error during category creation:', error)
           // Emit the error message to the client if something goes wrong
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'error',
             message: 'Error occurred during bulk creation, Please Try Again!',
           })
@@ -138,7 +137,7 @@ module.exports = {
 
       // Emit the error message to the client if something goes wrong
       setImmediate(() => {
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'error',
           message: 'Error occurred during bulk creation, Please Try Again!',
         })
@@ -191,7 +190,7 @@ module.exports = {
           await Promise.all(categoryPromises)
           console.log('end promise')
           // Emit the message to the client once all categories are created
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'info',
             message: 'Assessment Controls successfully saved!',
           })
@@ -199,7 +198,7 @@ module.exports = {
         } catch (error) {
           console.error('Error during category creation:', error)
           // Emit the error message to the client if something goes wrong
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'error',
             message: 'Error occurred during bulk creation, Please Try Again!',
           })
@@ -211,7 +210,7 @@ module.exports = {
 
       // Emit the error message to the client if something goes wrong
       setImmediate(() => {
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'error',
           message: 'Error occurred during bulk creation, Please Try Again!',
         })
@@ -264,7 +263,7 @@ module.exports = {
           await Promise.all(categoryPromises)
           console.log('end promise')
           // Emit the message to the client once all categories are created
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'info',
             message: 'Risk Treatments successfully saved!',
           })
@@ -272,7 +271,7 @@ module.exports = {
         } catch (error) {
           console.error('Error during category creation:', error)
           // Emit the error message to the client if something goes wrong
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'error',
             message: 'Error occurred during bulk creation, Please Try Again!',
           })
@@ -284,7 +283,7 @@ module.exports = {
 
       // Emit the error message to the client if something goes wrong
       setImmediate(() => {
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'error',
           message: 'Error occurred during bulk creation, Please Try Again!',
         })
@@ -337,7 +336,7 @@ module.exports = {
           await Promise.all(categoryPromises)
           console.log('end promise')
           // Emit the message to the client once all categories are created
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'info',
             message: 'Risk Treatments successfully saved!',
           })
@@ -345,7 +344,7 @@ module.exports = {
         } catch (error) {
           console.error('Error during category creation:', error)
           // Emit the error message to the client if something goes wrong
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'error',
             message: 'Error occurred during bulk creation, Please Try Again!',
           })
@@ -357,7 +356,7 @@ module.exports = {
 
       // Emit the error message to the client if something goes wrong
       setImmediate(() => {
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'error',
           message: 'Error occurred during bulk creation, Please Try Again!',
         })
@@ -409,7 +408,7 @@ module.exports = {
           await Promise.all(SupplierPromises)
           console.log('end promise')
           // Emit the message to the client once all categories are created
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'info',
             message: 'Suppliers successfully saved!',
           })
@@ -417,7 +416,7 @@ module.exports = {
         } catch (error) {
           console.error('Error during Supplier creation:', error)
           // Emit the error message to the client if something goes wrong
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'error',
             message: 'Error occurred during bulk creation, Please Try Again!',
           })
@@ -429,7 +428,7 @@ module.exports = {
 
       // Emit the error message to the client if something goes wrong
       setImmediate(() => {
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'error',
           message: 'Error occurred during bulk creation, Please Try Again!',
         })
@@ -481,7 +480,7 @@ module.exports = {
           await Promise.all(SupplierPromises)
           console.log('end promise')
           // Emit the message to the client once all categories are created
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'info',
             message: 'Customers successfully saved!',
           })
@@ -489,7 +488,7 @@ module.exports = {
         } catch (error) {
           console.error('Error during Customers creation:', error)
           // Emit the error message to the client if something goes wrong
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'error',
             message: 'Error occurred during bulk creation, Please Try Again!',
           })
@@ -501,7 +500,7 @@ module.exports = {
 
       // Emit the error message to the client if something goes wrong
       setImmediate(() => {
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'error',
           message: 'Error occurred during bulk creation, Please Try Again!',
         })
@@ -553,7 +552,7 @@ module.exports = {
           await Promise.all(SupplierPromises)
           console.log('end promise')
           // Emit the message to the client once all categories are created
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'info',
             message: 'Company successfully saved!',
           })
@@ -561,7 +560,7 @@ module.exports = {
         } catch (error) {
           console.error('Error during Company creation:', error)
           // Emit the error message to the client if something goes wrong
-          emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+          emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
             type: 'error',
             message: 'Error occurred during bulk creation, Please Try Again!',
           })
@@ -573,7 +572,7 @@ module.exports = {
 
       // Emit the error message to the client if something goes wrong
       setImmediate(() => {
-        emitMessageToClient(strapi.io, parseInt(userId), 'message', {
+        emitMessageToClient((strapi as any).io, parseInt(userId), 'message', {
           type: 'error',
           message: 'Error occurred during bulk creation, Please Try Again!',
         })
