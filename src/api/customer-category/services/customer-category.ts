@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * customer-category service

@@ -1,4 +1,4 @@
-'use strict';
+'use strict'
 
 /**
  * control-assessment service

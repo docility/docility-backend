@@ -1,9 +1,8 @@
-'use strict';
+'use strict'
 
 /**
  * risk-treatment router
  */
-
 
 import { factories } from '@strapi/strapi';
 

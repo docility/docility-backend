@@ -8,7 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": true, 
+    "draftAndPublish": true,
     "indexes": [
       {
         "name": "id",

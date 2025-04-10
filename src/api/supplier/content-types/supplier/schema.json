@@ -4,12 +4,12 @@
   "info": {
     "singularName": "supplier",
     "pluralName": "suppliers",
-    "displayName": "supplier",
-    "description": ""
+    "displayName": "supplier"
   },
   "options": {
     "draftAndPublish": true
   },
+  "pluginOptions": {},
   "attributes": {
     "supplier_id": {
       "type": "string"
@@ -159,7 +159,7 @@
       "type": "string"
     },
     "assessment_impact": {
-      "type": "text"
+      "type": "string"
     },
     "assessment_inherent_risl_level": {
       "type": "string"
@@ -188,7 +188,7 @@
     "supplier_date_entered": {
       "type": "string"
     },
-    "supplier_decision_date": {
+    "supplier_decision_date":{
       "type": "string"
     }
   }

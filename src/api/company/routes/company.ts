@@ -1,9 +1,8 @@
-'use strict';
+'use strict'
 
 /**
  * company router
  */
-
 
 import { factories } from '@strapi/strapi';
 

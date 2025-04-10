@@ -1,8 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * information-asset-category service
  */
+
 
 import { factories } from '@strapi/strapi';
 

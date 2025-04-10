@@ -4,7 +4,8 @@
   "info": {
     "singularName": "question",
     "pluralName": "questions",
-    "displayName": "question"
+    "displayName": "question",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
@@ -21,6 +22,12 @@
       "type": "string"
     },
     "options": {
+      "type": "string"
+    },
+    "topic": {
+      "type": "string"
+    },
+    "notes": {
       "type": "string"
     }
   }

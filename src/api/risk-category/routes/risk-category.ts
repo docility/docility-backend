@@ -1,9 +1,9 @@
-'use strict';
+'use strict'
 
 /**
  * risk-category router
  */
-
+ 
 import { factories } from '@strapi/strapi';
 
 export default factories.createCoreRouter('api::risk-category.risk-category');

@@ -369,6 +369,40 @@ export interface AdminUser extends Struct.CollectionTypeSchema {
   };
 }
 
+export interface ApiCompanyQuestionnaireCompanyQuestionnaire
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'company_questionnaires';
+  info: {
+    description: '';
+    displayName: 'company-questionnaire';
+    pluralName: 'company-questionnaires';
+    singularName: 'company-questionnaire';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    company_id: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::company-questionnaire.company-questionnaire'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    questionnaire_id: Schema.Attribute.String;
+    status: Schema.Attribute.String;
+    supplier_id: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    url: Schema.Attribute.UID;
+  };
+}
+
 export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
   collectionName: 'companies';
   info: {
@@ -385,6 +419,7 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    email: Schema.Attribute.String;
     fileupload: Schema.Attribute.Relation<
       'oneToOne',
       'api::fileupload.fileupload'
@@ -632,6 +667,7 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
 export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
   collectionName: 'questions';
   info: {
+    description: '';
     displayName: 'question';
     pluralName: 'questions';
     singularName: 'question';
@@ -649,11 +685,79 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
       'api::question.question'
     > &
       Schema.Attribute.Private;
+    notes: Schema.Attribute.String;
     options: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     question: Schema.Attribute.String;
     questionnaires_id: Schema.Attribute.String;
+    topic: Schema.Attribute.String;
     type: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQuestionnaireAnswerQuestionnaireAnswer
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'questionnaire_answers';
+  info: {
+    description: '';
+    displayName: 'questionnaire_answer';
+    pluralName: 'questionnaire-answers';
+    singularName: 'questionnaire-answer';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    answer: Schema.Attribute.String;
+    company_id: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::questionnaire-answer.questionnaire-answer'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    question_id: Schema.Attribute.String;
+    questionnaire_id: Schema.Attribute.String;
+    supplier_id: Schema.Attribute.String;
+    type: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+  };
+}
+
+export interface ApiQuestionnaireTopicQuestionnaireTopic
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'questionnaire_topics';
+  info: {
+    displayName: 'questionnaire_topic';
+    pluralName: 'questionnaire-topics';
+    singularName: 'questionnaire-topic';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::questionnaire-topic.questionnaire-topic'
+    > &
+      Schema.Attribute.Private;
+    publishedAt: Schema.Attribute.DateTime;
+    status: Schema.Attribute.String;
+    title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -894,7 +998,6 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
 export interface ApiSupplierSupplier extends Struct.CollectionTypeSchema {
   collectionName: 'suppliers';
   info: {
-    description: '';
     displayName: 'supplier';
     pluralName: 'suppliers';
     singularName: 'supplier';
@@ -907,7 +1010,7 @@ export interface ApiSupplierSupplier extends Struct.CollectionTypeSchema {
     acn_no: Schema.Attribute.String;
     assessment_cia_impact: Schema.Attribute.String;
     assessment_due_date: Schema.Attribute.String;
-    assessment_impact: Schema.Attribute.Text;
+    assessment_impact: Schema.Attribute.String;
     assessment_inherent_risl_level: Schema.Attribute.String;
     assessment_likelihood: Schema.Attribute.String;
     assessment_reviewer_person: Schema.Attribute.String;
@@ -1488,6 +1591,7 @@ declare module '@strapi/strapi' {
       'admin::transfer-token': AdminTransferToken;
       'admin::transfer-token-permission': AdminTransferTokenPermission;
       'admin::user': AdminUser;
+      'api::company-questionnaire.company-questionnaire': ApiCompanyQuestionnaireCompanyQuestionnaire;
       'api::company.company': ApiCompanyCompany;
       'api::control-assessment.control-assessment': ApiControlAssessmentControlAssessment;
       'api::control-domain.control-domain': ApiControlDomainControlDomain;
@@ -1496,6 +1600,8 @@ declare module '@strapi/strapi' {
       'api::fileupload.fileupload': ApiFileuploadFileupload;
       'api::information-asset-category.information-asset-category': ApiInformationAssetCategoryInformationAssetCategory;
       'api::question.question': ApiQuestionQuestion;
+      'api::questionnaire-answer.questionnaire-answer': ApiQuestionnaireAnswerQuestionnaireAnswer;
+      'api::questionnaire-topic.questionnaire-topic': ApiQuestionnaireTopicQuestionnaireTopic;
       'api::questionnaire.questionnaire': ApiQuestionnaireQuestionnaire;
       'api::respons.respons': ApiResponsRespons;
       'api::risk-category.risk-category': ApiRiskCategoryRiskCategory;
