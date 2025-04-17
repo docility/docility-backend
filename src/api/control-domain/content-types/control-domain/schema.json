@@ -7,7 +7,7 @@
     "displayName": "control_domain"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

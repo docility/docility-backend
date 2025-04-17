@@ -7,7 +7,7 @@
     "displayName": "customer_management"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {

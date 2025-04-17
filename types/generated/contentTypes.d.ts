@@ -488,7 +488,7 @@ export interface ApiControlDomainControlDomain
     singularName: 'control-domain';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     control_description: Schema.Attribute.String;
@@ -519,7 +519,7 @@ export interface ApiCustomerCategoryCustomerCategory
     singularName: 'customer-category';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     category: Schema.Attribute.String;
@@ -549,7 +549,7 @@ export interface ApiCustomerManagementCustomerManagement
     singularName: 'customer-management';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     abn_no: Schema.Attribute.String;
@@ -605,7 +605,7 @@ export interface ApiFileuploadFileupload extends Struct.CollectionTypeSchema {
     singularName: 'fileupload';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     company: Schema.Attribute.Relation<'oneToOne', 'api::company.company'>;
@@ -641,7 +641,7 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
     singularName: 'information-asset-category';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     category: Schema.Attribute.String;
@@ -673,7 +673,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     singularName: 'question';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -708,7 +708,7 @@ export interface ApiQuestionnaireAnswerQuestionnaireAnswer
     singularName: 'questionnaire-answer';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     answer: Schema.Attribute.String;
@@ -742,7 +742,7 @@ export interface ApiQuestionnaireTopicQuestionnaireTopic
     singularName: 'questionnaire-topic';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -774,7 +774,7 @@ export interface ApiQuestionnaireQuestionnaire
     singularName: 'questionnaire';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -804,7 +804,7 @@ export interface ApiResponsRespons extends Struct.CollectionTypeSchema {
     singularName: 'respons';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     createdAt: Schema.Attribute.DateTime;
@@ -837,7 +837,7 @@ export interface ApiRiskCategoryRiskCategory
     singularName: 'risk-category';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     category_domain: Schema.Attribute.String;
@@ -868,7 +868,7 @@ export interface ApiRiskOwnerRiskOwner extends Struct.CollectionTypeSchema {
     singularName: 'risk-owner';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     company: Schema.Attribute.String;
@@ -902,7 +902,7 @@ export interface ApiRiskTreatmentRiskTreatment
     singularName: 'risk-treatment';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     companies: Schema.Attribute.Relation<'oneToMany', 'api::company.company'>;
@@ -938,7 +938,7 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     singularName: 'risk';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
     indexes: [
       {
         fields: ['id'];
@@ -1003,7 +1003,7 @@ export interface ApiSupplierSupplier extends Struct.CollectionTypeSchema {
     singularName: 'supplier';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     abn_no: Schema.Attribute.String;

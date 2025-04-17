@@ -7,7 +7,7 @@
     "displayName": "questionnaire_topic"
   },
   "options": {
-    "draftAndPublish": true
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
