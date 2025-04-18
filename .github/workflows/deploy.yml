@@ -1,0 +1,48 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - '**' # Trigger on all branches
+
+env:
+  DOCKER_IMAGE_PREFIX: reneboy/api-docility
+
+jobs:
+  build-and-push:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set Branch Variables
+        id: vars
+        run: |
+          echo "branch_name=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
+          echo "branch_type=$(echo ${GITHUB_REF#refs/heads/} | cut -d'/' -f1)" >> $GITHUB_OUTPUT
+          echo "image_tag=${{ github.run_number }}" >> $GITHUB_OUTPUT
+
+      - name: Build Docker Image
+        run: |
+          IMAGE_NAME="${{ env.DOCKER_IMAGE_PREFIX }}-${{ steps.vars.outputs.branch_type }}"
+          IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
+          echo "Building image $IMAGE_NAME:$IMAGE_TAG"
+          docker build -t $IMAGE_NAME:$IMAGE_TAG .
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Push Docker Image
+        run: |
+          IMAGE_NAME="${{ env.DOCKER_IMAGE_PREFIX }}-${{ steps.vars.outputs.branch_type }}"
+          IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
+          echo "Pushing $IMAGE_NAME:$IMAGE_TAG"
+          docker push $IMAGE_NAME:$IMAGE_TAG
+
+      - name: Cleanup Docker Image
+        if: always()
+        run: |
+          IMAGE_NAME="${{ env.DOCKER_IMAGE_PREFIX }}-${{ steps.vars.outputs.branch_type }}"
+          IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
+          docker rmi $IMAGE_NAME:$IMAGE_TAG || true
