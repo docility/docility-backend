@@ -9,8 +9,8 @@ env:
   DOCKER_IMAGE_PREFIX: reneboy/docility
   DOCKER_USERNAME: reneboy
   DOCKER_PASSWORD: Zusez3freemake12@@
-  SSH_HOST: 13.211.3.64 
-  SSH_USER: ubuntu
+  SSH_HOST: ${{ secrets.SERVER_IP }}
+  SSH_USER: ${{ secrets.SSH_USER }}
   SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }} # move this to GitHub Secrets for security
 
 jobs:
