@@ -6,6 +6,8 @@ import emitMessageToClient from "../../utils/socket"
 export default {
   send: async (ctx, next) => {
     const userId = ctx.headers['userid']
+    console.log('userId', userId)
+    console.log('ctx.request.body', ctx.request.body)
 
     try {
       try {
@@ -15,7 +17,7 @@ export default {
         // Ensure the data is an array
 
         let url = uuidv4()
-        const result = strapi.entityService
+        const result = await strapi.entityService
           .create('api::company-questionnaire.company-questionnaire', {
             data: {
               ...questionnaireData.data,
@@ -57,8 +59,8 @@ export default {
           message: 'Company successfully saved!',
         })
         console.log('send socket')
-        console.log('company', companyDetails)
-        await strapi.plugins['email'].services.email.send({
+        console.log('company result', companyDetails)
+        const email = await strapi.plugins['email'].services.email.send({
           to:
             questionnaireData.data.type === 'COMPANY'
               ? companyDetails[0].email
@@ -134,6 +136,8 @@ export default {
                 </html>
           `,
         })
+
+        console.log('Email sent successfully!', email)
       } catch (error) {
         console.log(error)
       }

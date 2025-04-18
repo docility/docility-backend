@@ -1,17 +1,15 @@
 {
   "kind": "collectionType",
-  "collectionName": "suppliers",
+  "collectionName": "supplier_managements",
   "info": {
-    "singularName": "supplier",
-    "pluralName": "suppliers",
-    "displayName": "supplier"
+    "singularName": "supplier-management",
+    "pluralName": "supplier-managements",
+    "displayName": "supplier-management"
   },
- 
-  "pluginOptions": {},
-  "attributes": {
-    "supplier_id": {
-      "type": "string"
-    },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": { 
     "supplier_name": {
       "type": "string"
     },

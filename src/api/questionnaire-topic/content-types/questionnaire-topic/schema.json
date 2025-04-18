@@ -4,7 +4,8 @@
   "info": {
     "singularName": "questionnaire-topic",
     "pluralName": "questionnaire-topics",
-    "displayName": "questionnaire_topic"
+    "displayName": "questionnaire_topic",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -15,9 +16,6 @@
       "type": "string"
     },
     "description": {
-      "type": "string"
-    },
-    "status": {
       "type": "string"
     }
   }

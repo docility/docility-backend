@@ -379,7 +379,7 @@ export interface ApiCompanyQuestionnaireCompanyQuestionnaire
     singularName: 'company-questionnaire';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     company_id: Schema.Attribute.String;
@@ -412,7 +412,7 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     singularName: 'company';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     address: Schema.Attribute.String;
@@ -456,7 +456,7 @@ export interface ApiControlAssessmentControlAssessment
     singularName: 'control-assessment';
   };
   options: {
-    draftAndPublish: true;
+    draftAndPublish: false;
   };
   attributes: {
     annexControl: Schema.Attribute.String;
@@ -737,6 +737,7 @@ export interface ApiQuestionnaireTopicQuestionnaireTopic
   extends Struct.CollectionTypeSchema {
   collectionName: 'questionnaire_topics';
   info: {
+    description: '';
     displayName: 'questionnaire_topic';
     pluralName: 'questionnaire-topics';
     singularName: 'questionnaire-topic';
@@ -756,7 +757,6 @@ export interface ApiQuestionnaireTopicQuestionnaireTopic
     > &
       Schema.Attribute.Private;
     publishedAt: Schema.Attribute.DateTime;
-    status: Schema.Attribute.String;
     title: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -992,6 +992,93 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     vulnerability: Schema.Attribute.String;
+  };
+}
+
+export interface ApiSupplierManagementSupplierManagement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'supplier_managements';
+  info: {
+    displayName: 'supplier-management';
+    pluralName: 'supplier-managements';
+    singularName: 'supplier-management';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    abn_no: Schema.Attribute.String;
+    acn_no: Schema.Attribute.String;
+    assessment_cia_impact: Schema.Attribute.String;
+    assessment_due_date: Schema.Attribute.String;
+    assessment_impact: Schema.Attribute.String;
+    assessment_inherent_risl_level: Schema.Attribute.String;
+    assessment_likelihood: Schema.Attribute.String;
+    assessment_reviewer_person: Schema.Attribute.String;
+    assessment_risk_assessment_matrix: Schema.Attribute.String;
+    assessment_risk_completed: Schema.Attribute.String;
+    assessment_status: Schema.Attribute.String;
+    assessment_threat: Schema.Attribute.String;
+    bank_account_name: Schema.Attribute.String;
+    bank_account_no: Schema.Attribute.String;
+    bank_bsb: Schema.Attribute.String;
+    certification_iso_14001: Schema.Attribute.String;
+    certification_iso_27001: Schema.Attribute.String;
+    certification_iso_45001: Schema.Attribute.String;
+    certification_iso_9001: Schema.Attribute.String;
+    certification_modern_slavery_act: Schema.Attribute.String;
+    contract_commencement_date: Schema.Attribute.String;
+    contract_end_date: Schema.Attribute.String;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    estimated_annual_budget: Schema.Attribute.String;
+    exit_terms: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::supplier-management.supplier-management'
+    > &
+      Schema.Attribute.Private;
+    modern_slavery_published_date: Schema.Attribute.String;
+    other_certification: Schema.Attribute.String;
+    other_certification_exists: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    sla_details: Schema.Attribute.String;
+    supplier_24x7_contact_person_email: Schema.Attribute.String;
+    supplier_24x7_contact_person_name: Schema.Attribute.String;
+    supplier_24x7_contact_person_number: Schema.Attribute.String;
+    supplier_address: Schema.Attribute.String;
+    supplier_approval_status: Schema.Attribute.String;
+    supplier_assessment_agreement: Schema.Attribute.String;
+    supplier_assessment_required: Schema.Attribute.String;
+    supplier_category: Schema.Attribute.String;
+    supplier_contact_person_email: Schema.Attribute.String;
+    supplier_contact_person_name: Schema.Attribute.String;
+    supplier_contact_person_number: Schema.Attribute.String;
+    supplier_country: Schema.Attribute.String;
+    supplier_credit_limit: Schema.Attribute.String;
+    supplier_data_shared: Schema.Attribute.String;
+    supplier_date_entered: Schema.Attribute.String;
+    supplier_decision_date: Schema.Attribute.String;
+    supplier_department_managing: Schema.Attribute.String;
+    supplier_glocal: Schema.Attribute.String;
+    supplier_name: Schema.Attribute.String;
+    supplier_ongoing_management: Schema.Attribute.String;
+    supplier_owner: Schema.Attribute.String;
+    supplier_payment_terms: Schema.Attribute.String;
+    supplier_postal_code: Schema.Attribute.String;
+    supplier_purpose: Schema.Attribute.String;
+    supplier_sla_applicable: Schema.Attribute.String;
+    supplier_special_condition_notes: Schema.Attribute.String;
+    supplier_state: Schema.Attribute.String;
+    supplier_suburb: Schema.Attribute.String;
+    supplier_trading_as: Schema.Attribute.String;
+    supplier_type: Schema.Attribute.String;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    website: Schema.Attribute.String;
   };
 }
 
@@ -1608,6 +1695,7 @@ declare module '@strapi/strapi' {
       'api::risk-owner.risk-owner': ApiRiskOwnerRiskOwner;
       'api::risk-treatment.risk-treatment': ApiRiskTreatmentRiskTreatment;
       'api::risk.risk': ApiRiskRisk;
+      'api::supplier-management.supplier-management': ApiSupplierManagementSupplierManagement;
       'api::supplier.supplier': ApiSupplierSupplier;
       'plugin::content-releases.release': PluginContentReleasesRelease;
       'plugin::content-releases.release-action': PluginContentReleasesReleaseAction;
