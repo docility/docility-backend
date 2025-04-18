@@ -41,7 +41,7 @@
     },
     "likelihood": {
       "type": "string"
-    },
+    }, 
     "initialImpact": {
       "type": "string"
     },
