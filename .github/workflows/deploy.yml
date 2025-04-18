@@ -10,8 +10,8 @@ env:
   DOCKER_USERNAME: reneboy
   DOCKER_PASSWORD: Zusez3freemake12@@
   SSH_HOST: 13.211.3.64 
-  SSH_USER: reneboy
-  SSH_PRIVATE_KEY: private_key
+  SSH_USER: ubuntu
+  SSH_PRIVATE_KEY: ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAILjLcDe78S0xnq6/Xb33J3GIwi4LlRRIrN5JVx86wijS github-deploy
 
 jobs:
   build-and-deploy:
