@@ -1,24 +1,22 @@
-name: Build and Push Docker Image
+name: Build and Deploy Frontend Docker Image
 
 on:
   push:
     branches:
-      - '**' # Trigger on all branches
+      - '**'
 
 env:
-  DOCKER_USERNAME: reneboy
-  DOCKER_PASSWORD: Zusez3freemake12@@
-  DOCKER_IMAGE_NAME: reneboy/reneboy-docility
+  DOCKER_IMAGE_PREFIX: reneboy/docility
 
 jobs:
-  build-and-push:
+  build-and-deploy:
     runs-on: ubuntu-latest
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set Variables
+      - name: Set Branch Variables
         id: vars
         run: |
           echo "branch_name=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
@@ -27,19 +25,53 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
-          docker build -t ${{ env.DOCKER_IMAGE_NAME }}:$IMAGE_TAG .
+          IMAGE_NAME=reneboy/docility-master
+          IMAGE_TAG=${{ github.run_number }}
+          docker build -t $IMAGE_NAME:$IMAGE_TAG .
 
       - name: Login to Docker Hub
-        run: echo "${{ env.DOCKER_PASSWORD }}" | docker login -u "${{ env.DOCKER_USERNAME }}" --password-stdin
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
 
       - name: Push Docker Image
         run: |
-          IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
-          docker push ${{ env.DOCKER_IMAGE_NAME }}:$IMAGE_TAG
+          IMAGE_NAME=reneboy/docility-master
+          IMAGE_TAG=${{ github.run_number }}
+          docker push $IMAGE_NAME:$IMAGE_TAG
+
+      - name: Deploy to Server via SSH
+        uses: appleboy/ssh-action@v1.0.0
+        with:
+          host: ${{ secrets.SSH_HOST }}
+          username: ${{ secrets.SSH_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: |
+            FRONTEND_IMAGE="reneboy/docility-master"
+            FRONTEND_TAG="${{ github.run_number }}"
+            FRONTEND_PORT=8080
+
+            echo "Pulling frontend image: $FRONTEND_IMAGE:$FRONTEND_TAG"
+            docker pull $FRONTEND_IMAGE:$FRONTEND_TAG
+
+            echo "Removing existing frontend container..."
+            if [ "$(docker ps -a -q -f name=frontend-app)" ]; then
+              docker stop frontend-app
+              docker rm frontend-app
+            fi
+            if [ "$(docker ps -q -f publish=$FRONTEND_PORT)" ]; then
+              docker rm -f $(docker ps -q -f publish=$FRONTEND_PORT)
+            fi
+
+            echo "Starting frontend container..."
+            docker run -d --name frontend-app -p $FRONTEND_PORT:80 $FRONTEND_IMAGE:$FRONTEND_TAG
+
+            echo "Restarting Nginx..."
+            sudo systemctl restart nginx
+
+            docker ps | grep frontend-app
 
       - name: Cleanup Docker Image
         if: always()
         run: |
-          IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
-          docker rmi ${{ env.DOCKER_IMAGE_NAME }}:$IMAGE_TAG || true
+          IMAGE_NAME="reneboy/docility-master"
+          IMAGE_TAG="${{ github.run_number }}"
+          docker rmi $IMAGE_NAME:$IMAGE_TAG || true
