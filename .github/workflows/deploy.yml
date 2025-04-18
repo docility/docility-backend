@@ -6,7 +6,9 @@ on:
       - '**' # Trigger on all branches
 
 env:
-  DOCKER_IMAGE_PREFIX: reneboy/api-docility
+  DOCKER_USERNAME: reneboy
+  DOCKER_PASSWORD: Zusez3freemake12@@
+  DOCKER_IMAGE_NAME: reneboy/reneboy-docility
 
 jobs:
   build-and-push:
@@ -16,7 +18,7 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v3
 
-      - name: Set Branch Variables
+      - name: Set Variables
         id: vars
         run: |
           echo "branch_name=${GITHUB_REF#refs/heads/}" >> $GITHUB_OUTPUT
@@ -25,22 +27,19 @@ jobs:
 
       - name: Build Docker Image
         run: |
-          IMAGE_NAME="reneboy-docility"
-          IMAGE_TAG="${{ github.run_number }}"
-          docker build -t $IMAGE_NAME:$IMAGE_TAG .
+          IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
+          docker build -t ${{ env.DOCKER_IMAGE_NAME }}:$IMAGE_TAG .
 
       - name: Login to Docker Hub
-        run: echo "Zusez3freemake12@@" | docker login -u "reneboy" --password-stdin
+        run: echo "${{ env.DOCKER_PASSWORD }}" | docker login -u "${{ env.DOCKER_USERNAME }}" --password-stdin
 
       - name: Push Docker Image
         run: |
-          IMAGE_NAME="reneboy-docility"
-          IMAGE_TAG="${{ github.run_number }}"
-          docker push $IMAGE_NAME:$IMAGE_TAG
+          IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
+          docker push ${{ env.DOCKER_IMAGE_NAME }}:$IMAGE_TAG
 
       - name: Cleanup Docker Image
         if: always()
         run: |
-          IMAGE_NAME="${{ env.DOCKER_IMAGE_PREFIX }}-${{ steps.vars.outputs.branch_type }}"
           IMAGE_TAG="${{ steps.vars.outputs.image_tag }}"
-          docker rmi $IMAGE_NAME:$IMAGE_TAG || true
+          docker rmi ${{ env.DOCKER_IMAGE_NAME }}:$IMAGE_TAG || true
