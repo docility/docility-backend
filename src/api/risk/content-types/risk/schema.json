@@ -8,14 +8,7 @@
     "description": ""
   },
   "options": {
-    "draftAndPublish": false,
-    "indexes": [
-      {
-        "name": "id",
-        "fields": ["id"],
-        "unique": true
-      }
-    ]
+    "draftAndPublish": false
   },
   "pluginOptions": {},
   "attributes": {
@@ -32,6 +25,9 @@
       "type": "string"
     },
     "vulnerability": {
+      "type": "string"
+    },
+    "residualImpact": {
       "type": "string"
     },
     "informationAsset": {
@@ -119,6 +115,9 @@
       "type": "string"
     },
     "currentControlInPlace": {
+      "type": "string"
+    },
+    "riskOwnerEmail": {
       "type": "string"
     }
   }

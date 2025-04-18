@@ -657,6 +657,7 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
       'api::information-asset-category.information-asset-category'
     > &
       Schema.Attribute.Private;
+    options: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -939,13 +940,6 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
   };
   options: {
     draftAndPublish: false;
-    indexes: [
-      {
-        fields: ['id'];
-        name: 'id';
-        unique: true;
-      },
-    ];
   };
   attributes: {
     approvalEvidence: Schema.Attribute.String;
@@ -969,6 +963,7 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     notes: Schema.Attribute.String;
     personResponsibleToImplement: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
+    residualImpact: Schema.Attribute.String;
     residualLikelihood: Schema.Attribute.String;
     residualRiskLevel: Schema.Attribute.String;
     residualTreatmentApprovalDate: Schema.Attribute.String;
@@ -981,6 +976,7 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     riskControlMap: Schema.Attribute.String;
     riskLevel: Schema.Attribute.String;
     riskOwner: Schema.Attribute.String;
+    riskOwnerEmail: Schema.Attribute.String;
     riskTreatment: Schema.Attribute.String;
     riskTreatmentPlan: Schema.Attribute.String;
     threat: Schema.Attribute.String;

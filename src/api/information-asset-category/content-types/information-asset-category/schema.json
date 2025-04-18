@@ -26,6 +26,9 @@
       "relation": "oneToMany",
       "target": "api::company.company",
       "mappedBy": "information_asset_category"
+    },
+    "options": {
+      "type": "string"
     }
   }
 }

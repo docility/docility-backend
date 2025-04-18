@@ -535,7 +535,7 @@ export default {
       // Create categories asynchronously without blocking the response
       setImmediate(async () => {
         try {
-          const SupplierPromises = SupplierData.map((data) => {
+          const SupplierPromises = SupplierData.map((data:  any) => {
             return strapi.entityService
               .create('api::company.company', {
                 data: {
