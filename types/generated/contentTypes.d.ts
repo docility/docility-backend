@@ -853,6 +853,7 @@ export interface ApiRiskCategoryRiskCategory
       'api::risk-category.risk-category'
     > &
       Schema.Attribute.Private;
+    options: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
@@ -921,6 +922,7 @@ export interface ApiRiskTreatmentRiskTreatment
       'api::risk-treatment.risk-treatment'
     > &
       Schema.Attribute.Private;
+    options: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     treatmentOption: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
@@ -943,6 +945,7 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
   };
   attributes: {
     approvalEvidence: Schema.Attribute.String;
+    assetCategory: Schema.Attribute.String;
     ciaImpact: Schema.Attribute.String;
     controlDomain: Schema.Attribute.String;
     controlMapped: Schema.Attribute.String;

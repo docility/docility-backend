@@ -20,6 +20,9 @@
     },
     "categoryType": {
       "type": "string"
+    },
+    "options": {
+      "type": "string"
     }
   }
 }

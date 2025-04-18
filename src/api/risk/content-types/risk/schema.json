@@ -119,6 +119,9 @@
     },
     "riskOwnerEmail": {
       "type": "string"
+    },
+    "assetCategory": {
+      "type": "string"
     }
   }
 }
