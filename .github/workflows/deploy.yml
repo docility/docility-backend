@@ -3,8 +3,10 @@ name: Build and Deploy backend Docker Image
 on:
   push:
     branches:
-      - '**'  # Triggers on any push to any branch
-
+      - '**'    # Trigger on any push to any branch (including edits on GitHub)
+  pull_request:
+    branches:
+      - '**'    # Also trigger when a pull request is opened, synchronized, or updated
 env:
   DOCKER_IMAGE_PREFIX: reneboy/docility-api
   SSH_HOST: ${{ secrets.SERVER_IP }}
