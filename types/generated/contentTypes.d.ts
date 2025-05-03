@@ -968,14 +968,17 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     publishedAt: Schema.Attribute.DateTime;
     residualImpact: Schema.Attribute.String;
     residualLikelihood: Schema.Attribute.String;
+    residualRiskApprovalFile: Schema.Attribute.String;
     residualRiskLevel: Schema.Attribute.String;
     residualTreatmentApprovalDate: Schema.Attribute.String;
     risidualImpact: Schema.Attribute.String;
     riskAcceptable: Schema.Attribute.String;
     riskApprovalDate: Schema.Attribute.String;
     riskApprovalEvidence: Schema.Attribute.String;
+    riskApprovalFile: Schema.Attribute.String;
     riskAssessmentCompleted: Schema.Attribute.String;
     riskCategory: Schema.Attribute.String;
+    riskControlDomain: Schema.Attribute.String;
     riskControlMap: Schema.Attribute.String;
     riskLevel: Schema.Attribute.String;
     riskOwner: Schema.Attribute.String;
@@ -985,7 +988,9 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     threat: Schema.Attribute.String;
     treatmentApprovalDate: Schema.Attribute.String;
     treatmentApprovalEvidence: Schema.Attribute.String;
+    treatmentApprovalEvidenceFile: Schema.Attribute.String;
     treatmentCompletionDate: Schema.Attribute.String;
+    treatmentPlanFile: Schema.Attribute.String;
     treatmentStatus: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
