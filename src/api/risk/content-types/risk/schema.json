@@ -41,7 +41,7 @@
     },
     "likelihood": {
       "type": "string"
-    }, 
+    },
     "initialImpact": {
       "type": "string"
     },
@@ -121,6 +121,21 @@
       "type": "string"
     },
     "assetCategory": {
+      "type": "string"
+    },
+    "riskControlDomain": {
+      "type": "string"
+    },
+    "riskApprovalFile": {
+      "type": "string"
+    },
+    "treatmentPlanFile": {
+      "type": "string"
+    },
+    "treatmentApprovalEvidenceFile": {
+      "type": "string"
+    },
+    "residualRiskApprovalFile": {
       "type": "string"
     }
   }
