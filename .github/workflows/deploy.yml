@@ -68,7 +68,7 @@ jobs:
         run: snyk auth ${{ secrets.SNYK_AUTH }}
 
       - name: Run Snyk Vulnerability Scan
-        run: snyk test --all-projects --json --debug > snyk-results.json
+        run: snyk test --all-projects --json --debug > snyk-results.json || true
         continue-on-error: true
 
       - name: Generate Snyk Severity Summary
