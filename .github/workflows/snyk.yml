@@ -1,0 +1,70 @@
+name: Snyk Scan
+
+on:
+  push:
+    branches:
+      - '**'    # Trigger on any push to any branch (including edits on GitHub)
+  pull_request:
+    branches:
+      - '**'    # Also trigger when a pull request is opened, synchronized, or updated
+  workflow_call:
+jobs:
+  snyk-scan:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Install Snyk CLI
+        run: |
+          npm install -g snyk
+      - name: Authenticate with Snyk
+        run: snyk auth ${{ secrets.SNYK_AUTH }}
+
+      - name: Run Snyk Vulnerability Scan
+        run: snyk test --all-projects --json --debug > snyk-results.json
+        continue-on-error: true
+
+      - name: Generate Snyk Severity Summary
+        run: |
+          echo "### 🛡️ Snyk Vulnerability Summary" >> $GITHUB_STEP_SUMMARY
+          echo "" >> $GITHUB_STEP_SUMMARY
+          
+          # Severity count
+          SEVERITY_COUNTS=$(jq '
+            .vulnerabilities // []  # Handle null or missing vulnerabilities
+            | group_by(.severity)
+            | map({(.[0].severity): length})
+            | add
+          ' snyk-results.json)
+          
+          echo "#### 📊 Severity Breakdown" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`json" >> $GITHUB_STEP_SUMMARY
+          echo "$SEVERITY_COUNTS" >> $GITHUB_STEP_SUMMARY
+          echo "\`\`\`" >> $GITHUB_STEP_SUMMARY
+          
+          # Detailed package info
+          echo "#### 📦 Affected Packages & Fix Recommendations" >> $GITHUB_STEP_SUMMARY
+          echo "| Severity | Package | Version | Fix Available | Recommended Fix |" >> $GITHUB_STEP_SUMMARY
+          echo "|----------|---------|---------|----------------|------------------|" >> $GITHUB_STEP_SUMMARY
+          
+          jq -r '
+            .vulnerabilities // []  # Handle null or missing vulnerabilities
+            | .[] 
+            | [
+                (.severity | ascii_upcase), 
+                .packageName, 
+                .version, 
+                ((.upgradePath | length > 0) // false), 
+                ((.upgradePath[1] // "") | tostring)
+              ] 
+            | @tsv
+          ' snyk-results.json | while IFS=$'\t' read -r severity package version fix_available recommended_fix; do
+            echo "| $severity | $package | $version | $fix_available | ${recommended_fix:-N/A} |" >> $GITHUB_STEP_SUMMARY
+          done
+
+        continue-on-error: true
+      
+      - name: Monitor Snyk (optional)
+        run: snyk monitor --all-projects
+        continue-on-error: true

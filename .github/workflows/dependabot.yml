@@ -1,0 +1,26 @@
+
+name: Dependabot Auto-Merge
+
+on:
+  schedule:
+    - cron: '0 0 * * *' # Runs daily at midnight
+  workflow_dispatch:
+  workflow_call:
+jobs:
+  auto-merge:
+    runs-on: ubuntu-latest
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Use the GitHub token for authentication
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Check if there are open Dependabot PRs
+        run: |
+          pr_count=$(gh pr list --state open --label "dependencies" --json number --jq '. | length')
+          echo "Number of open Dependabot PRs: $pr_count"
+          if [ "$pr_count" -gt 0 ]; then
+            echo "Dependabot PR exists, merging..."
+            gh pr merge $(gh pr list --state open --label "dependencies" --json number --jq '.[0].number') --merge --admin
+          else
+            echo "No Dependabot PRs found"

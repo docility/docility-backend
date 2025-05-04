@@ -1,0 +1,66 @@
+name: Build and Push Docker Image
+
+on:
+  push:
+    branches:
+      - "**"    # Trigger on any push to any branch (including edits on GitHub)
+  pull_request:
+    branches:
+      - "**"    # Also trigger when a pull request is opened, synchronized, or updated
+  workflow_call:
+env:
+  DOCKER_IMAGE_PREFIX: reneboy/docility-api
+  SSH_HOST: ${{ secrets.SERVER_IP }}
+  SSH_USER: ${{ secrets.SSH_USER }}
+  SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+  DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+  DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }} 
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    environment: prod
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Login to Docker Hub
+        run: echo "${{ secrets.DOCKER_PASSWORD }}" | docker login -u "${{ secrets.DOCKER_USERNAME }}" --password-stdin
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v3
+
+      - name: Cache Docker layers
+        uses: actions/cache@v4
+        with:
+          path: /tmp/.buildx-cache
+          key: ${{ runner.os }}-buildx-${{ github.sha }}
+          restore-keys: |
+            ${{ runner.os }}-buildx-
+
+      - name: Build Docker Image
+        run: |
+          IMAGE_NAME=${{ env.DOCKER_IMAGE_PREFIX }}-master
+          IMAGE_TAG=${{ github.run_number }}
+          docker buildx build \
+            --pull \
+            --cache-from=type=local,src=/tmp/.buildx-cache \
+            --cache-to=type=local,dest=/tmp/.buildx-cache-new \
+            --push \
+            -t $IMAGE_NAME:$IMAGE_TAG .
+
+          rm -rf /tmp/.buildx-cache
+          mv /tmp/.buildx-cache-new /tmp/.buildx-cache
+
+      - name: Save Docker image to tar
+        run: |
+          IMAGE_NAME=${{ env.DOCKER_IMAGE_PREFIX }}-master
+          IMAGE_TAG=${{ github.run_number }}
+          docker pull $IMAGE_NAME:$IMAGE_TAG
+          docker save -o image.tar $IMAGE_NAME:$IMAGE_TAG
+
+      - name: Upload Image Artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: docker-image
+          path: image.tar
