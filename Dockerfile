@@ -1,12 +1,15 @@
-# Use the official Node.js image as the base image
+# Use the official Node.js Alpine image as the base image
 FROM node:23.11.0-alpine3.21
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
 
+# Install required build tools and Python for building native modules
+RUN apk add --no-cache python3 g++ make
+
 # Copy the package.json and package-lock.json files to the working directory
 COPY package*.json ./
-RUN apt-get update && apt-get install -y python3 g++ make
+
 # Install the necessary dependencies
 RUN npm install
 
@@ -16,11 +19,8 @@ COPY . .
 # Build the Strapi application
 RUN npm run build
 
-# Set environment variables (if needed)  
-# ENV NODE_ENV production   
-     
 # Expose the port that Strapi runs on
-EXPOSE 1337    
+EXPOSE 1337
 
 # Command to run the Strapi application
-CMD ["npm", "run","develop"]
+CMD ["npm", "run", "develop"]
