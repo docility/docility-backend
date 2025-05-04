@@ -1,9 +1,9 @@
-export default () => ({
+export default ({ env }) => ({
   email: {
     config: {
       provider: 'strapi-provider-email-resend',
       providerOptions: {
-        apiKey: process.env.EMAIL_API_KEY, // Required
+        apiKey: env("EMAIL_API_KEY"), // Required
       },
       settings: {
         defaultFrom: 'DOCILITY <docility@email.docility.com.au>',
