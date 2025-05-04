@@ -208,10 +208,14 @@ jobs:
             IMAGE_TAG="${{ github.run_number }}"
             BACKEND_PORT=1337
 
-            echo "Pulling backend image: $IMAGE_NAME:$IMAGE_TAG"
+            echo "🔄 Cleaning up old Docker resources..."
+            # This will remove unused containers, images, volumes, and networks
+            sudo docker system prune -af --volumes || true
+
+            echo "📥 Pulling backend image: $IMAGE_NAME:$IMAGE_TAG"
             sudo docker pull $IMAGE_NAME:$IMAGE_TAG
 
-            echo "Removing existing backend container..."
+            echo "🧹 Removing existing backend container..."
             if [ "$(sudo docker ps -a -q -f name=backend-app)" ]; then
               sudo docker stop backend-app
               sudo docker rm backend-app
@@ -221,12 +225,13 @@ jobs:
               sudo docker rm -f $(sudo docker ps -q -f publish=$BACKEND_PORT)
             fi
 
-            echo "Starting backend container..."
-            sudo docker run -d --name backend-app -p $BACKEND_PORT:1337 $IMAGE_NAME:$IMAGE_TAG
+            echo "🚀 Starting backend container..."
+            sudo docker run -d --name backend-app --rm -p $BACKEND_PORT:1337 $IMAGE_NAME:$IMAGE_TAG
 
-            echo "Restarting Nginx..."
+            echo "🔁 Restarting Nginx..."
             sudo systemctl restart nginx
 
+            echo "✅ Running containers:"
             sudo docker ps | grep backend-app
 
   # Step 5: Cleanup Docker Image (Optional)
