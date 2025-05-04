@@ -101,7 +101,7 @@ jobs:
   deploy:
     if: github.ref == 'refs/heads/master' || github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
-    needs: push
+    needs: [checkout, push] 
     environment: prod
     steps:
       - name: Deploy to Server via SSH
