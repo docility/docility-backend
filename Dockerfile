@@ -1,5 +1,5 @@
 # Use the official Node.js image as the base image
-FROM node:23.11.0-bookworm-slim
+FROM node:23.11.0-alpine3.21
 
 # Set the working directory in the container
 WORKDIR /usr/src/app
