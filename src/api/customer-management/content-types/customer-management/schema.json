@@ -4,7 +4,8 @@
   "info": {
     "singularName": "customer-management",
     "pluralName": "customer-managements",
-    "displayName": "customer_management"
+    "displayName": "customer_management",
+    "description": ""
   },
   "options": {
     "draftAndPublish": false
@@ -93,6 +94,9 @@
       "type": "string"
     },
     "date_entered": {
+      "type": "string"
+    },
+    "company": {
       "type": "string"
     }
   }

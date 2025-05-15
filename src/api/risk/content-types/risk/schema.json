@@ -30,7 +30,7 @@
     "residualImpact": {
       "type": "string"
     },
-    "informationAsset": {
+    "assetMainCategory": {
       "type": "string"
     },
     "ciaImpact": {
@@ -136,6 +136,9 @@
       "type": "string"
     },
     "residualRiskApprovalFile": {
+      "type": "string"
+    },
+    "assetSubCategory": {
       "type": "string"
     }
   }

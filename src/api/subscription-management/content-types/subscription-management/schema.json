@@ -1,0 +1,23 @@
+{
+  "kind": "collectionType",
+  "collectionName": "subscription_managements",
+  "info": {
+    "singularName": "subscription-management",
+    "pluralName": "subscription-managements",
+    "displayName": "subscription-management"
+  },
+  "options": {
+    "draftAndPublish": true
+  },
+  "attributes": {
+    "name": {
+      "type": "string"
+    },
+    "description": {
+      "type": "string"
+    },
+    "accessModule": {
+      "type": "text"
+    }
+  }
+}

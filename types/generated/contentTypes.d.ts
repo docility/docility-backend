@@ -544,6 +544,7 @@ export interface ApiCustomerManagementCustomerManagement
   extends Struct.CollectionTypeSchema {
   collectionName: 'customer_managements';
   info: {
+    description: '';
     displayName: 'customer_management';
     pluralName: 'customer-managements';
     singularName: 'customer-management';
@@ -561,6 +562,7 @@ export interface ApiCustomerManagementCustomerManagement
     alt_phone_no: Schema.Attribute.String;
     approval_status: Schema.Attribute.String;
     cia_impact: Schema.Attribute.String;
+    company: Schema.Attribute.String;
     contact_person_name: Schema.Attribute.String;
     contract_commencement_date: Schema.Attribute.String;
     contract_end_date: Schema.Attribute.String;
@@ -946,6 +948,8 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
   attributes: {
     approvalEvidence: Schema.Attribute.String;
     assetCategory: Schema.Attribute.String;
+    assetMainCategory: Schema.Attribute.String;
+    assetSubCategory: Schema.Attribute.String;
     ciaImpact: Schema.Attribute.String;
     controlDomain: Schema.Attribute.String;
     controlMapped: Schema.Attribute.String;
@@ -955,7 +959,6 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     currentControlEffective: Schema.Attribute.String;
     currentControlInPlace: Schema.Attribute.String;
     dateCreated: Schema.Attribute.String;
-    informationAsset: Schema.Attribute.String;
     initialImpact: Schema.Attribute.String;
     likelihood: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
@@ -996,6 +999,37 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
     vulnerability: Schema.Attribute.String;
+  };
+}
+
+export interface ApiSubscriptionManagementSubscriptionManagement
+  extends Struct.CollectionTypeSchema {
+  collectionName: 'subscription_managements';
+  info: {
+    displayName: 'subscription-management';
+    pluralName: 'subscription-managements';
+    singularName: 'subscription-management';
+  };
+  options: {
+    draftAndPublish: true;
+  };
+  attributes: {
+    accessModule: Schema.Attribute.Text;
+    createdAt: Schema.Attribute.DateTime;
+    createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
+    description: Schema.Attribute.String;
+    locale: Schema.Attribute.String & Schema.Attribute.Private;
+    localizations: Schema.Attribute.Relation<
+      'oneToMany',
+      'api::subscription-management.subscription-management'
+    > &
+      Schema.Attribute.Private;
+    name: Schema.Attribute.String;
+    publishedAt: Schema.Attribute.DateTime;
+    updatedAt: Schema.Attribute.DateTime;
+    updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
+      Schema.Attribute.Private;
   };
 }
 
@@ -1699,6 +1733,7 @@ declare module '@strapi/strapi' {
       'api::risk-owner.risk-owner': ApiRiskOwnerRiskOwner;
       'api::risk-treatment.risk-treatment': ApiRiskTreatmentRiskTreatment;
       'api::risk.risk': ApiRiskRisk;
+      'api::subscription-management.subscription-management': ApiSubscriptionManagementSubscriptionManagement;
       'api::supplier-management.supplier-management': ApiSupplierManagementSupplierManagement;
       'api::supplier.supplier': ApiSupplierSupplier;
       'plugin::content-releases.release': PluginContentReleasesRelease;
