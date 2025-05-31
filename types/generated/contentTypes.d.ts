@@ -415,34 +415,51 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    acnNo: Schema.Attribute.String;
     address: Schema.Attribute.String;
+    businessType: Schema.Attribute.String;
+    city: Schema.Attribute.String;
+    contactPerson: Schema.Attribute.String;
+    country: Schema.Attribute.String;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    domain: Schema.Attribute.String;
     email: Schema.Attribute.String;
     fileupload: Schema.Attribute.Relation<
       'oneToOne',
       'api::fileupload.fileupload'
     >;
+    hasMultipleSites: Schema.Attribute.Text;
     information_asset_category: Schema.Attribute.Relation<
       'manyToOne',
       'api::information-asset-category.information-asset-category'
     >;
+    informationSecurityProducts: Schema.Attribute.String;
     locale: Schema.Attribute.String & Schema.Attribute.Private;
     localizations: Schema.Attribute.Relation<
       'oneToMany',
       'api::company.company'
     > &
       Schema.Attribute.Private;
+    moduleAssigned: Schema.Attribute.String;
     name: Schema.Attribute.String;
+    organisationStructure: Schema.Attribute.String;
+    phoneNo: Schema.Attribute.String;
     publishedAt: Schema.Attribute.DateTime;
     risk_treatment: Schema.Attribute.Relation<
       'manyToOne',
       'api::risk-treatment.risk-treatment'
     >;
+    state: Schema.Attribute.String;
+    subscriptionAllocated: Schema.Attribute.String;
+    taxNo: Schema.Attribute.String;
+    timeZone: Schema.Attribute.String;
     updatedAt: Schema.Attribute.DateTime;
     updatedBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
+    username: Schema.Attribute.String;
+    zipCode: Schema.Attribute.String;
   };
 }
 

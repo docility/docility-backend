@@ -38,6 +38,57 @@
     },
     "email": {
       "type": "string"
+    },
+    "username": {
+      "type": "string"
+    },
+    "businessType": {
+      "type": "string"
+    },
+    "taxNo": {
+      "type": "string"
+    },
+    "acnNo": {
+      "type": "string"
+    },
+    "country": {
+      "type": "string"
+    },
+    "state": {
+      "type": "string"
+    },
+    "city": {
+      "type": "string"
+    },
+    "zipCode": {
+      "type": "string"
+    },
+    "contactPerson": {
+      "type": "string"
+    },
+    "phoneNo": {
+      "type": "string"
+    },
+    "timeZone": {
+      "type": "string"
+    },
+    "domain": {
+      "type": "string"
+    },
+    "hasMultipleSites": {
+      "type": "text"
+    },
+    "informationSecurityProducts": {
+      "type": "string"
+    },
+    "subscriptionAllocated": {
+      "type": "string"
+    },
+    "moduleAssigned": {
+      "type": "string"
+    },
+    "organisationStructure": {
+      "type": "string"
     }
   }
 }
