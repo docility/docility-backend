@@ -42,28 +42,45 @@ export default factories.createCoreController(
         }
 
         console.log("Company created:", response.data);
-
+        console.log("Creating associated user...");
         // Get the role
         const role = await strapi
           .query("plugin::users-permissions.role")
-          .findOne({ where: { type: "company" } });
-
+          .findOne({ where: { name: "SystemOwner" } });
+        console.log("Role fetched:", role);
+        console.log("role found:", role);
+        console.log("Generating temporary password...");
         const password = generateTempPassword();
+       console.log("Temporary password generated:", password)
+        // const userData = {
+        //   username: response.data.username,
+        //   email: response.data.email,
+        //   password,
+        //   type: "type",
+        //   publishedAt: new Date(),
+        //   role: role?.id,
+        //   confirmed: true,
+        // };
 
         const userData = {
-          username: response.data.username,
-          email: response.data.email,
-          password,
-          type: "type",
-          publishedAt: new Date(),
-          role: role?.id,
-        };
+  username: response.data.username,
+  email: response.data.email,
+  password,
+  role: role?.id,
+  confirmed: true,
+  provider: "local",
+};
 
         // Create associated user
-        const user = await strapi.entityService.create(
-          "plugin::users-permissions.user",
-          { data: userData }
-        );
+        // const user = await strapi.entityService.create(
+        //   "plugin::users-permissions.user",
+        //   { data: userData }
+        // );
+
+        const user = await strapi
+  .plugin('users-permissions')
+  .service('user')
+  .add(userData);
 
         if (!user) {
           ctx.throw(500, "Failed to create associated user account.");
@@ -76,7 +93,7 @@ export default factories.createCoreController(
           const emailResult = await strapi.plugins["email"].services.email.send({
             to: user.email,
             subject: "Docility Company Account Creation",
-            html: accountCreation(userData),
+            html: accountCreation({username: user.username, password, type: "Company"}),
           });
 
           console.log("Email sent successfully:", emailResult);
@@ -88,6 +105,49 @@ export default factories.createCoreController(
         return response;
       } catch (err) {
         console.error("Unhandled error in company create:", err);
+        return ctx.internalServerError("An unexpected error occurred.");
+      }
+    },
+    async delete(ctx) {
+      try {
+        const { id } = ctx.params;
+
+        if (!id) {
+          return ctx.badRequest("Company ID is required.");
+        }
+
+        console.log("Deleting company with documentId:", id);
+
+        // Find the company by documentId field
+        const company = await strapi.db.query("api::company.company").findOne({
+          where: { documentId: id }
+        });
+
+        if (!company) {
+          return ctx.notFound("Company not found.");
+        }
+
+        // Delete associated user based on email/username
+        const user = await strapi.db.query("plugin::users-permissions.user").findOne({
+          where: {
+            $or: [
+              { email: company.email },
+              { username: company.username }
+            ]
+          }
+        });
+
+        if (user) {
+          await strapi.entityService.delete("plugin::users-permissions.user", user.id);
+          console.log("Associated user deleted:", user.email || user.username);
+        }
+
+        // Delete the company by its internal id
+        await strapi.entityService.delete("api::company.company", company.id);
+
+        return { message: "Company and associated user deleted successfully." };
+      } catch (err) {
+        console.error("Unhandled error in company delete:", err);
         return ctx.internalServerError("An unexpected error occurred.");
       }
     },
