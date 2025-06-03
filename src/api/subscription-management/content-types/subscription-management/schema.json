@@ -18,6 +18,12 @@
     },
     "accessModule": {
       "type": "text"
+    },
+    "user": {
+      "type": "relation",
+      "relation": "oneToOne",
+      "target": "plugin::users-permissions.user",
+      "mappedBy": "subscription_management"
     }
   }
 }

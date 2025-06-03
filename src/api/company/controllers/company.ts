@@ -21,6 +21,20 @@ export default factories.createCoreController(
 
         console.log("Incoming company data:", data);
 
+        const subscriptionId = JSON.parse(data.subscriptionAllocated)?.value;
+        console.log("Parsed subscription name:", subscriptionId);
+        const existingRole = await strapi.db
+          .query("api::subscription-management.subscription-management")
+          .findOne({
+            where: {
+              $or: [{ documentId: subscriptionId }],
+            },
+          });
+        
+        console.log("Existing role found:", existingRole);
+
+      
+
         // Check if user already exists
         const existingUser = await strapi.db
           .query("plugin::users-permissions.user")
@@ -32,6 +46,10 @@ export default factories.createCoreController(
 
         if (existingUser) {
           return ctx.badRequest("Username or email already exists.");
+        }
+
+        if (!existingRole) {
+          return ctx.badRequest("Subscription is not exists.");
         }
 
         // Call default core create logic
@@ -51,25 +69,20 @@ export default factories.createCoreController(
         console.log("role found:", role);
         console.log("Generating temporary password...");
         const password = generateTempPassword();
-       console.log("Temporary password generated:", password)
-        // const userData = {
-        //   username: response.data.username,
-        //   email: response.data.email,
-        //   password,
-        //   type: "type",
-        //   publishedAt: new Date(),
-        //   role: role?.id,
-        //   confirmed: true,
-        // };
+        console.log("Temporary password generated:", password);
 
         const userData = {
-  username: response.data.username,
-  email: response.data.email,
-  password,
-  role: role?.id,
-  confirmed: true,
-  provider: "local",
-};
+          username: response.data.username,
+          email: response.data.email,
+          password,
+          role: role?.id,
+          confirmed: true,
+          provider: "local",
+          subscription_management: existingRole?.id,
+        };
+
+        console.log("User data to be created:", userData);
+        
 
         // Create associated user
         // const user = await strapi.entityService.create(
@@ -78,9 +91,9 @@ export default factories.createCoreController(
         // );
 
         const user = await strapi
-  .plugin('users-permissions')
-  .service('user')
-  .add(userData);
+          .plugin("users-permissions")
+          .service("user")
+          .add(userData);
 
         if (!user) {
           ctx.throw(500, "Failed to create associated user account.");
@@ -90,11 +103,17 @@ export default factories.createCoreController(
 
         // Send email
         try {
-          const emailResult = await strapi.plugins["email"].services.email.send({
-            to: user.email,
-            subject: "Docility Company Account Creation",
-            html: accountCreation({username: user.username, password, type: "Company"}),
-          });
+          const emailResult = await strapi.plugins["email"].services.email.send(
+            {
+              to: user.email,
+              subject: "Docility Company Account Creation",
+              html: accountCreation({
+                username: user.username,
+                password,
+                type: "Company",
+              }),
+            }
+          );
 
           console.log("Email sent successfully:", emailResult);
         } catch (emailErr) {
@@ -120,7 +139,7 @@ export default factories.createCoreController(
 
         // Find the company by documentId field
         const company = await strapi.db.query("api::company.company").findOne({
-          where: { documentId: id }
+          where: { documentId: id },
         });
 
         if (!company) {
@@ -128,17 +147,19 @@ export default factories.createCoreController(
         }
 
         // Delete associated user based on email/username
-        const user = await strapi.db.query("plugin::users-permissions.user").findOne({
-          where: {
-            $or: [
-              { email: company.email },
-              { username: company.username }
-            ]
-          }
-        });
+        const user = await strapi.db
+          .query("plugin::users-permissions.user")
+          .findOne({
+            where: {
+              $or: [{ email: company.email }, { username: company.username }],
+            },
+          });
 
         if (user) {
-          await strapi.entityService.delete("plugin::users-permissions.user", user.id);
+          await strapi.entityService.delete(
+            "plugin::users-permissions.user",
+            user.id
+          );
           console.log("Associated user deleted:", user.email || user.username);
         }
 
