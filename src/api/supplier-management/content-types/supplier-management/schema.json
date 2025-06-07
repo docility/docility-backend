@@ -4,12 +4,13 @@
   "info": {
     "singularName": "supplier-management",
     "pluralName": "supplier-managements",
-    "displayName": "supplier-management"
+    "displayName": "supplier-management",
+    "description": ""
   },
   "options": {
     "draftAndPublish": true
   },
-  "attributes": { 
+  "attributes": {
     "supplier_name": {
       "type": "string"
     },
@@ -184,7 +185,10 @@
     "supplier_date_entered": {
       "type": "string"
     },
-    "supplier_decision_date":{
+    "supplier_decision_date": {
+      "type": "string"
+    },
+    "createBy": {
       "type": "string"
     }
   }

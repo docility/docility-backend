@@ -21,18 +21,17 @@ export default factories.createCoreController(
 
         console.log("Incoming company data:", data);
 
-        const subscriptionId = JSON.parse(data.subscriptionAllocated)?.value;
-        console.log("Parsed subscription name:", subscriptionId);
+        const subscriptionName = JSON.parse(data.subscriptionAllocated)?.value;
+        console.log("Parsed subscription name:", subscriptionName);
         const existingRole = await strapi.db
           .query("api::subscription-management.subscription-management")
           .findOne({
             where: {
-              $or: [{ documentId: subscriptionId }],
+              $or: [{ name: subscriptionName }],
             },
           });
         
         console.log("Existing role found:", existingRole);
-
       
 
         // Check if user already exists
