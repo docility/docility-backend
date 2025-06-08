@@ -29,6 +29,9 @@
     },
     "type": {
       "type": "string"
+    },    
+    "createBy": {
+      "type": "text"
     }
   }
 }

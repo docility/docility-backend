@@ -383,6 +383,7 @@ export interface ApiCompanyQuestionnaireCompanyQuestionnaire
   };
   attributes: {
     company_id: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -421,6 +422,7 @@ export interface ApiCompanyCompany extends Struct.CollectionTypeSchema {
     city: Schema.Attribute.String;
     contactPerson: Schema.Attribute.String;
     country: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -479,6 +481,7 @@ export interface ApiControlAssessmentControlAssessment
     annexControl: Schema.Attribute.String;
     controlDescription: Schema.Attribute.Text;
     controlHeading: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -510,6 +513,7 @@ export interface ApiControlDomainControlDomain
   attributes: {
     control_description: Schema.Attribute.String;
     control_no: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -540,6 +544,7 @@ export interface ApiCustomerCategoryCustomerCategory
   };
   attributes: {
     category: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -584,6 +589,7 @@ export interface ApiCustomerManagementCustomerManagement
     contract_commencement_date: Schema.Attribute.String;
     contract_end_date: Schema.Attribute.String;
     country: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -666,6 +672,7 @@ export interface ApiInformationAssetCategoryInformationAssetCategory
     category: Schema.Attribute.String;
     categoryType: Schema.Attribute.String;
     companies: Schema.Attribute.Relation<'oneToMany', 'api::company.company'>;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -696,6 +703,7 @@ export interface ApiQuestionQuestion extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -733,6 +741,7 @@ export interface ApiQuestionnaireAnswerQuestionnaireAnswer
   attributes: {
     answer: Schema.Attribute.String;
     company_id: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -766,6 +775,7 @@ export interface ApiQuestionnaireTopicQuestionnaireTopic
     draftAndPublish: false;
   };
   attributes: {
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -797,6 +807,7 @@ export interface ApiQuestionnaireQuestionnaire
     draftAndPublish: false;
   };
   attributes: {
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -827,6 +838,7 @@ export interface ApiResponsRespons extends Struct.CollectionTypeSchema {
     draftAndPublish: false;
   };
   attributes: {
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -862,6 +874,7 @@ export interface ApiRiskCategoryRiskCategory
   attributes: {
     category_domain: Schema.Attribute.String;
     categoryType: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -893,6 +906,7 @@ export interface ApiRiskOwnerRiskOwner extends Struct.CollectionTypeSchema {
   };
   attributes: {
     company: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -927,6 +941,7 @@ export interface ApiRiskTreatmentRiskTreatment
   };
   attributes: {
     companies: Schema.Attribute.Relation<'oneToMany', 'api::company.company'>;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;
@@ -970,6 +985,7 @@ export interface ApiRiskRisk extends Struct.CollectionTypeSchema {
     ciaImpact: Schema.Attribute.String;
     controlDomain: Schema.Attribute.String;
     controlMapped: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

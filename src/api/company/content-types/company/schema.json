@@ -89,6 +89,9 @@
     },
     "organisationStructure": {
       "type": "string"
+    },    
+    "createBy": {
+      "type": "text"
     }
   }
 }

@@ -22,6 +22,9 @@
     },
     "respondent_id": {
       "type": "string"
+    },    
+    "createBy": {
+      "type": "text"
     }
   }
 }

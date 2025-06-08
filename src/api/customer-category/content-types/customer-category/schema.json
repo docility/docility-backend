@@ -16,6 +16,9 @@
     },
     "description": {
       "type": "string"
+    },    
+    "createBy": {
+      "type": "text"
     }
   }
 }

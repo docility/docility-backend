@@ -21,5 +21,18 @@ export default factories.createCoreController('api::supplier-management.supplier
     });
 
     return this.transformResponse(suppliers);
-  }
+  }, 
+  async create(ctx) {
+    // Get the user ID from the JWT token
+    const userId = ctx.state.user?.documentId;
+    console.log("User ID from JWT:", userId);
+    if (!userId) {
+      return ctx.unauthorized("User not authenticated.");
+    }
+ 
+    if (!ctx.request.body.data) ctx.request.body.data = {};
+    ctx.request.body.data.createBy = userId; 
+ 
+    return await super.create(ctx);
+  },
 }));

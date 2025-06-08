@@ -26,6 +26,9 @@
     },
     "name": {
       "type": "string"
+    },
+    "createBy": {
+      "type": "text"
     }
   }
 }

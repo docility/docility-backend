@@ -98,6 +98,9 @@
     },
     "company": {
       "type": "string"
+    },    
+    "createBy": {
+      "type": "text"
     }
   }
 }

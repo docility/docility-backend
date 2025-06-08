@@ -140,6 +140,9 @@
     },
     "assetSubCategory": {
       "type": "string"
+    },    
+    "createBy": {
+      "type": "text"
     }
   }
 }

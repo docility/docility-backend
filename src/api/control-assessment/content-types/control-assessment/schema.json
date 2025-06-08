@@ -23,6 +23,9 @@
     },
     "controlDescription": {
       "type": "text"
+    },    
+    "createBy": {
+      "type": "text"
     }
   }
 }
