@@ -1192,6 +1192,7 @@ export interface ApiSupplierSupplier extends Struct.CollectionTypeSchema {
     certification_modern_slavery_act: Schema.Attribute.String;
     contract_commencement_date: Schema.Attribute.String;
     contract_end_date: Schema.Attribute.String;
+    createBy: Schema.Attribute.Text;
     createdAt: Schema.Attribute.DateTime;
     createdBy: Schema.Attribute.Relation<'oneToOne', 'admin::user'> &
       Schema.Attribute.Private;

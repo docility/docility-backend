@@ -188,6 +188,9 @@
     },
     "supplier_decision_date":{
       "type": "string"
+    },
+    "createBy": {
+      "type": "text"
     }
   }
 }
